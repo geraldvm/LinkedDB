@@ -20,7 +20,6 @@ public class JsonStore {
         String directory = System.getProperty("user.dir")+"\\"+this.getName(); //Directorio
         File newStore = new File(directory); //Crea el objeto
         newStore.mkdirs();
-
     }
 
 }
