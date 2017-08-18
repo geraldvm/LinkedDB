@@ -21,12 +21,14 @@ public class Runtime {
 
 
 
-        a.show();
+        //a.show();
         System.out.println("******************** \n");
         a.erase(1);
-        a.erase("d");
-        //a.update("d","hello");
-        //a.show();
+        a.erase("c");
+        a.update("d","hello");
+        a.show();
+        System.out.println("+++++++++++++++++++++++++++++++++");
+        a.erase("hello");
         a.addLast("x");
         a.show();
 

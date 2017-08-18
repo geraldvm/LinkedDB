@@ -116,6 +116,7 @@ public class LinkedListS extends Node{
                     if(temp.getNext()==last)
                     {
                         temp.setNext(null);
+                        last=temp;
                     }
                     else
                     {
@@ -129,6 +130,7 @@ public class LinkedListS extends Node{
                 {
                     temp=temp.getNext();
                 }
+            }
 
         }
 
