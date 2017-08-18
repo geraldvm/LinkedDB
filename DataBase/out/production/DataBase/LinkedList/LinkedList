@@ -1,0 +1,56 @@
+
+public class SimpleList {
+
+    Nodo inicio = null;
+    Nodo fin = null;
+
+    public void InsertarInicio(Object objeto)
+    {
+        Nodo nuevo = new Nodo(objeto, inicio);
+        inicio = nuevo;
+        if(fin==null)
+        {
+            fin = inicio;
+        }
+    }
+    public void InsertarFinal(Object objeto)
+    {
+        Nodo nuevo = new Nodo(objeto, null);//Nodo final apunta a null
+        inicio = nuevo;
+        if(inicio==null)
+        {
+            fin = nuevo;
+            inicio = fin;
+        }
+        else
+        {
+            fin.setSiguiente(nuevo);
+            fin = nuevo;
+        }
+    }
+    public  void EliminarInicio()
+    {
+        inicio=inicio.getSiguiente();
+    }
+    public Object ExtraerInicio()
+    {
+        Object info = inicio.getValor();
+        inicio = inicio.getSiguiente();
+        if(inicio == null)
+        {
+            fin = null;
+        }
+        return info;
+    }
+    public void Show()
+    {
+        Nodo temp=inicio;
+        while (temp !=null)
+        {
+            System.out.println(temp.getValor());
+            temp=temp.siguiente();
+        }
+    }
+
+
+}

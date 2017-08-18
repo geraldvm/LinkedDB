@@ -18,8 +18,18 @@ public class Runtime {
         a.addLast("c");
         a.addLast("d");
 
+
+
+
         a.show();
-        a.search(6);
+        System.out.println("******************** \n");
+        a.erase(1);
+        a.erase("d");
+        //a.update("d","hello");
+        //a.show();
+        a.addLast("x");
+        a.show();
+
 
     }
 }

@@ -2,7 +2,7 @@ package LinkedList;
 
 
 
-public class LinkedListS {
+public class LinkedListS extends Node{
     private Node first;
     private Node last;
 
@@ -59,6 +59,7 @@ public class LinkedListS {
         {
                 last.setNext(newLast);
                 last = newLast;
+
         }
     }
 
@@ -92,5 +93,63 @@ public class LinkedListS {
         return x;
     }
 
+
+
+
+
+
+    public void erase(Object item)
+    {
+        Node temp;
+        temp=this.first;
+        if (temp.getItem()==item)
+        {
+            this.first=temp.getNext();
+        }
+
+        else
+        {
+            while (temp.getNext()!=null)
+            {
+                if (temp.getNext().getItem()==item)
+                {
+                    if(temp.getNext()==last)
+                    {
+                        temp.setNext(null);
+                    }
+                    else
+                    {
+                        temp.setNext(temp.getNext().getNext());
+                    }
+
+
+
+                }
+                else if (temp.getNext()!=null)
+                {
+                    temp=temp.getNext();
+                }
+
+        }
+
+    }
+
+    public void update(Object item, Object newValue)
+    {
+        Node temp = first;
+        if (last.getItem()==item)
+        {
+            last.setItem(newValue);
+        }
+        while (temp.getNext()!=null)
+        {
+            if (temp.getItem()==item)
+            {
+                temp.setItem(newValue);
+            }
+            temp=temp.getNext();
+        }
+
+    }
 
 }
