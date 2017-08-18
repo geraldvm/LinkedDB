@@ -1,0 +1,26 @@
+package Start;
+import java.io.File;
+
+public class JsonStore
+{
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+
+        return name;
+    }
+
+    private void create(){
+        //String directory = "C:\\Users\\geral\\Documents\\PHOTO\\TEST";
+        String directory = System.getProperty("user.dir")+"\\"+this.getName();
+
+        File newFile = new File(directory);
+        newFile.mkdirs();
+
+    }
+
+}
