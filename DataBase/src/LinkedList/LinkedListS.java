@@ -2,7 +2,7 @@ package LinkedList;
 
 
 
-public class LinkedListS extends Node{
+public class LinkedListS{
     private Node first;
     private Node last;
 
