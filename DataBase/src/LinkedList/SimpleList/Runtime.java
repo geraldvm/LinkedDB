@@ -1,6 +1,7 @@
-package LinkedList;
+package LinkedList.SimpleList;
 
 public class Runtime {
+
     public static void main(String[] args) {
         LinkedListS ab = new LinkedListS();
 
@@ -22,16 +23,17 @@ public class Runtime {
 
 
         //a.show();
-        System.out.println("******************** \n");
+        //System.out.println("******************** \n");
         a.erase(1);
         a.erase("c");
         a.update("d","hello");
-        a.show();
-        System.out.println("+++++++++++++++++++++++++++++++++");
+       // a.show();
+       // System.out.println("+++++++++++++++++++++++++++++++++");
         a.erase("hello");
         a.addLast("x");
         a.show();
 
 
     }
+
 }

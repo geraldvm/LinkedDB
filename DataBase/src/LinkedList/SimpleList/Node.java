@@ -1,4 +1,4 @@
-package LinkedList;
+package LinkedList.SimpleList;
 
 public class Node {
     private Object item;
