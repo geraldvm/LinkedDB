@@ -1,6 +1,7 @@
-package LinkedList.Double;
+package LinkedList.Circular;
 
 public class Node {
+
     private Node previous;
     private Node next;
     private Object item;
@@ -13,19 +14,13 @@ public class Node {
         this.previous = previous;
     }
 
-    public void setPrevious()
-    {
-        this.previous = null;
-    }
+
 
     public void setNext(Node next) {
         this.next = next;
     }
 
-    public void setNext()
-    {
-        this.next = null;
-    }
+
 
     public Object getItem() {
         return item;
@@ -38,5 +33,5 @@ public class Node {
     public Node getNext() {
         return next;
     }
-}
 
+}
