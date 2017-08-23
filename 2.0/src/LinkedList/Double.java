@@ -28,10 +28,8 @@ public class Double {
     {
         if (first == null)
         {
-            last = new Node();
+            last = new NodeDouble();
             last.setItem(item);
-            last.setNext();
-            last.setPrevious();
             first = last;
         }
         else
@@ -55,13 +53,14 @@ public class Double {
             first = null;
         }
     }
-    public void showD()
+    public void show()
     {
-        NodeDouble temp = first;
+        Node temp = first;
         while (temp != null)
         {
             System.out.println(temp.getItem());
             temp = temp.getNext();
+
         }
     }
     public void showReverse()
@@ -76,7 +75,7 @@ public class Double {
 
     public Boolean search(Object item)
     {
-        NodeDouble temp = first;
+        Node temp = first;
         while (temp != null)
         {
             if (temp.getItem()==item)

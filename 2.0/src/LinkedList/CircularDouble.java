@@ -35,7 +35,7 @@ public class CircularDouble {
     }
     public void show()
     {
-        NodeDouble temp = first;
+        Node temp = first;
 
         while (temp.getNext() != first)
         {
@@ -55,6 +55,7 @@ public class CircularDouble {
             {
                 return true;
             }
+
             temp =temp.getNext();
         }
         if (temp.getItem()==item)
