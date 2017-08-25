@@ -1,0 +1,6 @@
+○ Nombre del atributo
+○ Tipo del atributo: entero, flotante, cadena, fecha-hora
+○ Tipo especial: llave primaria o llave foránea. Una llave foránea indica el atributo del otro
+documento que hace referencia. Adelante, se explica más esto.
+○ Requerido o no requerido
+○ Valor por defecto en caso de no ser requerido
