@@ -19,12 +19,14 @@ public class JSONWrite {
         list.add("tag 2");
         list.add("tag 3");
 
+
         //obj.put("Tags", list);
 
         JSONObject innerObj = new JSONObject();
         innerObj.put("PostX", "Escribir un JSON");
         innerObj.put("PostY", "Leer un JSON");
         innerObj.put("PostZ", "lalala");
+
 
         obj.put("Posts", innerObj);
 
