@@ -1,15 +1,18 @@
 package JsonStore;
-
+import Load.LoadFile;
 
 
 public class Run {
     public static void main(String[] args) {
-        JsonStore n = new JsonStore();
-        n.setName("C2");
-        n.setName("C3");
-        n.setName("4");
-        n.setName("4");
-        n.getStores();
+        LoadFile cargar = new LoadFile("k");
+        cargar.loadStores();
+        JsonStore newStore = new JsonStore(cargar.getStoreList());
+        //newStore.showRegistry();
+        newStore.addStore("storeC");
+        newStore.addStore("CDFA");
+        newStore.showRegistry();
+
+
 
     }
 }
