@@ -5,6 +5,12 @@ public class Node {
     private Node next;
     private Object item;
 
+    public Node(){
+        this.previous=null;
+        this.next=null;
+        this.item=null;
+    }
+
     public void setItem(Object item) {
         this.item = item;
     }
@@ -28,7 +34,7 @@ public class Node {
     }
 
     public Object getItem() {
-        return item;
+        return this.item;
     }
 
     public Node getPrevious() {
