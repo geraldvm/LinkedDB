@@ -18,20 +18,20 @@ public class LoadFile {
         this.path = path;
         this.storeList = new DoubleList();
         this.docList = new CircularList();
+    }
 
+    public DoubleList getStoreList() {
+        return this.storeList;
+    }
 
+    public CircularList getDocList() {
+        return this.docList;
     }
 
     //http://lineadecodigo.com/java/listar-un-directorio-con-java/
     public void loadStores(){
         loadStores_aux();
     }
-
-    public void loadDocs(){
-        loadDocs_aux("StoreA");
-    }
-
-
 
     private void loadStores_aux()
     {
@@ -42,6 +42,11 @@ public class LoadFile {
         }
         //this.storeList.show();
     }
+
+    public void loadDocs(String store){
+        loadDocs_aux(store);
+    }
+
     private void loadDocs_aux(String store)
     {
         File[] listF = exist("Linked"+store);
@@ -69,7 +74,5 @@ public class LoadFile {
         return  null;
     }
 
-    public DoubleList getStoreList() {
-        return this.storeList;
-    }
+
 }
