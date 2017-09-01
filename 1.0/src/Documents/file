@@ -5,68 +5,50 @@ documento que hace referencia. Adelante, se explica más esto.
 ○ Requerido o no requerido
 ○ Valor por defecto en caso de no ser requerido
 
+package Documents;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Iterator;
+public class RUN {
+    /*public static void main(String[] args) {
 
-private JSONObject newAt= new JSONObject();
+        JSONParser parser = new JSONParser();
 
-
-
-    public void create(){
-
-    }
-
-    public void createJson(String store,String name, int type, boolean key, boolean required)
-    {
-
-        this.newAt.put("Store",store);
-        this.newAt.put("Name",name);
-        switch (type){
-            case 1:
-                this.newAt.put("Type", "int");
-                break;
-            case 2:
-                this.newAt.put("Type", "float");
-                break;
-            case 3:
-                this.newAt.put("Type", "String");
-                break;
-            case 4:
-                this.newAt.put("Type", "date");
-                break;
-        }
-
-        if (key==true){
-            this.newAt.put("Key", "Primary");
-        }
-        else {
-            this.newAt.put("Key", "Foreign");
-        }
-
-        this.newAt.put("Required", new Boolean(required));
-
-        if (required==true){
-            this.newAt.put("default", "default");
-        }
-
-
-    }
-
-    public void showJson(){
-        System.out.println(this.newAt);
-    }
-
-    public void createFile() {
         try {
 
+            Object obj = parser.parse(new FileReader("C:\\Users\\geral\\Desktop\\test.json"));
 
-            FileWriter file = new FileWriter("C:\\Users\\geral\\Desktop\\prueba.json");
-            String conv = this.newAt.toJSONString();
-            file.write(conv);
-            file.flush();
-            file.close();
+            JSONObject jsonObject = (JSONObject) obj;
+            //jsonObject.get("Store2");
+            //jsonObject.put("HELLO","NEHHH");
+            //jsonObject.writeJSONString();
+            //System.out.println(jsonObject);
+
+            //System.out.println(jsonObject.get("Store2"));
+
+            JSONObject attL = (JSONObject) jsonObject.get("Store2");
+            JSONObject x = new JSONObject();
+            x.put("Key","LOW");
+            x.put("Type", "FEO");
+            attL.replace("nameAT2",x);
+
+            System.out.println(attL.keySet());
+            JSONObject attS = (JSONObject) attL.get("nameAT2");
+
+            jsonObject.replace("Store2",attL);
+            //System.out.println(jsonObject);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-
-        catch(IOException e){
-                //manejar error
-        }
-
-    }
+    }*/
+}
