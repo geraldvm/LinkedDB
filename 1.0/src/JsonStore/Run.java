@@ -10,7 +10,8 @@ public class Run {
         //newStore.showRegistry();
         newStore.addStore("storeC");
         newStore.addStore("CDFA");
-        newStore.showRegistry();
+        newStore.createCarpet();
+       // newStore.showRegistry();
 
 
 

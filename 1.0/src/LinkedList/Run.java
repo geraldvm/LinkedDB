@@ -31,6 +31,7 @@ public class Run {
         b.addFirst("e");
         b.addLast(5);
         b.addLast(6);
+        b.addLast(5);
         b.show();
         // a.showReverse();
         System.out.println(b.search(25));
@@ -55,6 +56,15 @@ public class Run {
         c.show();
 
         c.search(23);
+        System.out.println("------------------------------");
+        b.addLast(45);
+        System.out.println(b.length());
+
+        //b.eraseLast();
+        System.out.println("+++++++++++++++");
+        b.show();
+        b.find(0);
+       System.out.println(b.find(2));
 
 
     }
