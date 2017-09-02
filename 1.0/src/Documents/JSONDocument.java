@@ -8,12 +8,22 @@ import java.io.*;
 public class JSONDocument {
     private String store;
     private String name;
-    private JSONObject JSONDoc;
+    private JSONObject JSONDoc;//Json con la lista de atributos
+    private JSONObject document;//Json proveniente de lista enlazada
 
     public JSONDocument (String store, String name){
         this.store = store;
         this.name = name;
         this.JSONDoc = new JSONObject();
+        this.document = new JSONObject();
+    }
+
+    public JSONDocument (String store, JSONObject document){
+        this.document = document;
+        this.store = store;
+        Object[] a = this.document.keySet().toArray();
+        this.name = a[0].toString();
+
     }
 
     public void createAttribute(String name, int type, boolean key, boolean required){
@@ -66,6 +76,21 @@ public class JSONDocument {
                 break;
         }
         return type;
+    }
+
+    public JSONObject getDocument() {
+        return getDocument_aux();
+    }
+
+    private JSONObject getDocument_aux(){
+        //Metodo que retorna los JSON para agregarlos a la LinkedList
+        if(this.document.isEmpty()){
+            this.document.put(this.name,this.JSONDoc);
+        }
+        else {
+            this.document.replace(this.name, this.JSONDoc);
+        }
+        return this.document;
     }
 
     private boolean update(String name){
