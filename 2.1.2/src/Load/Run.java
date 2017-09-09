@@ -1,4 +1,4 @@
-package Load;
+/*package Load;
 
 public class Run {
     public static void main(String[] args) {
@@ -7,4 +7,4 @@ public class Run {
     }
 
 
-}
+}*/

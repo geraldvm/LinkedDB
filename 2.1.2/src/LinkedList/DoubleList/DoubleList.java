@@ -1,6 +1,8 @@
 package LinkedList.DoubleList;
 
-public class DoubleList {
+import JsonStore.Store;
+
+public class DoubleList{
     private Node first;
     private Node last;
     private int size;
@@ -11,6 +13,7 @@ public class DoubleList {
         this.last=null;
         this.size=0;
     }
+
 
     public int length() {
         return this.size;
@@ -45,7 +48,7 @@ public class DoubleList {
         return this.first==null;
     }
 
-    public void addFirst(Object item)
+    public void addFirst(Store item)
     {
         if (first == null)
         {
@@ -67,7 +70,7 @@ public class DoubleList {
 
     }
 
-    public void addLast(Object item)
+    public void addLast(Store item)
     {
         if (first == null)
         {
@@ -124,7 +127,7 @@ public class DoubleList {
         }
     }
 
-    public Boolean search(Object item)
+    public Boolean search(Store item)
     {
         Node temp = first;
         while (temp != null)

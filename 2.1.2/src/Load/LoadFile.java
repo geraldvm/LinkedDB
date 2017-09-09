@@ -1,5 +1,5 @@
 package Load;
-
+/*
 import LinkedList.DoubleList.DoubleList;
 import jdk.nashorn.internal.parser.JSONParser;
 import LinkedList.CircularList.CircularList;
@@ -73,3 +73,4 @@ public class LoadFile {
         return this.storeList;
     }
 }
+*/

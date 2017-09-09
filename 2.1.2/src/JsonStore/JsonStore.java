@@ -1,4 +1,4 @@
-package JsonStore;
+/*package JsonStore;
 import java.io.File;
 import LinkedList.DoubleList.*;
 
@@ -68,6 +68,7 @@ public class JsonStore {
             /*System.out.println(temp.getItem());
             System.out.println(oldStore.search(temp.getItem()));
             */
+/*
             if(!oldStore.search(temp.getItem()))//Si no existia ese store lo crea
             {
                 System.out.println(temp.getItem());
@@ -90,4 +91,4 @@ public class JsonStore {
         newStore.mkdirs();
     }
 
-}
+}*/

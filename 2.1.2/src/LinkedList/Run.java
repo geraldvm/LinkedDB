@@ -1,4 +1,4 @@
-package LinkedList;
+/*package LinkedList;
 import LinkedList.CircularList.CircularList;
 import LinkedList.DoubleList.DoubleList;
 import LinkedList.SimpleList.SimpleList;
@@ -68,4 +68,4 @@ public class Run {
 
 
     }
-}
+}*/
