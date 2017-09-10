@@ -36,6 +36,7 @@ public class Load{
                 JsonDoc newDoc = new JsonDoc(listD[x].getName());
                 docList.addLast(newDoc);
             }
+
             Store newSt = new Store(listS[i].getName(), docList);
             this.storeList.addLast(newSt);
         }

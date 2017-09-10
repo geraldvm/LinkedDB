@@ -1,23 +1,26 @@
 package LinkedList.SimpleList;
 
-public class SimpleList
-{
+import Documents.Attribute;
+import sun.net.www.content.text.Generic;
+
+public class SimpleList {
     private Node first;
     private Node last;
+    private int size=0;
 
-    public void addFirst(Object item) {
-        Node newFirst = new Node();
-        newFirst.setItem(item);
-        if (first == null)
-        {
-            first = newFirst;
-        }
-        else
-        {
-            newFirst.setNext(first);
-            first = newFirst;
-        }
+    public SimpleList(){
+        this.size=0;
     }
+
+    public int length() {
+        return this.size;
+    }
+
+    public boolean isEmpty(){
+        return this.first==null;
+    }
+
+
 
     public void show()
     {
@@ -35,16 +38,12 @@ public class SimpleList
         Node newLast = new Node();
         newLast.setItem(item);
 
-        if (first==null)
+        if (this.isEmpty())
         {
             last = newLast;
             first = newLast;
         }
 
-        else if (last==null)
-        {
-            last = newLast;
-        }
         else
         {
             last.setNext(newLast);
@@ -135,4 +134,33 @@ public class SimpleList
         System.out.println(x);
         return x;
     }
+
+    public Node find(int pos)
+    {
+        return find_aux(pos);
+    }
+
+    private Node find_aux(int pos)
+    {
+        Node temp = this.first;
+        if(this.isEmpty())
+        {
+            return null;
+        }
+        else {
+            if (pos <= this.length())
+            {
+                for (int i=0; i<pos; i++)
+                {
+                    temp= temp.getNext();
+                }
+                return temp;
+
+            }
+            return null;
+        }
+    }
+
+
+
 }

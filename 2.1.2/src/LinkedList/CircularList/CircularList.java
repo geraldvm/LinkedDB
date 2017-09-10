@@ -1,4 +1,7 @@
 package LinkedList.CircularList;
+
+import Documents.JsonDoc;
+
 public class CircularList {
 
     private Node first ;
@@ -21,7 +24,7 @@ public class CircularList {
 
 
 
-    public void addLast(Object item)
+    public void addLast(JsonDoc item)
     {
         if (first == null)
         {
@@ -66,7 +69,7 @@ public class CircularList {
     }
 
 
-    public Boolean search(Object item)
+    public Boolean search(JsonDoc item)
     {
         Node temp = first;
         while (temp.getNext() != first)

@@ -1,8 +1,11 @@
 package Load;
 
+import Documents.JsonDoc;
 import JsonStore.Store;
 import LinkedList.CircularList.CircularList;
 import LinkedList.DoubleList.DoubleList;
+
+import java.time.LocalDate;
 
 public class main {
 
@@ -14,8 +17,10 @@ public class main {
         Store l = a.find(0).getItem();
         System.out.println(l.getStoreName());
         CircularList x = l.getDocs();
-        x.show();
-        System.out.println(x.find(0));
-
+        JsonDoc h = x.find(1).getItem();
+        System.out.println(h.getName());
+        LocalDate fecha= LocalDate.of(2016,6,5);
+        //fecha.format("dd/mm/yy");
+        System.out.println(fecha);
     }
 }

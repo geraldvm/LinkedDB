@@ -1,9 +1,11 @@
 package LinkedList.CircularList;
 
+import Documents.JsonDoc;
+
 public class Node {
     private Node previous;
     private Node next;
-    private Object item;
+    private JsonDoc item;
 
     public Node(){
         this.previous=null;
@@ -11,7 +13,7 @@ public class Node {
         this.item=null;
     }
 
-    public void setItem(Object item) {
+    public void setItem(JsonDoc item) {
         this.item = item;
     }
 
@@ -33,7 +35,7 @@ public class Node {
         this.next = null;
     }
 
-    public Object getItem() {
+    public JsonDoc getItem() {
         return this.item;
     }
 
