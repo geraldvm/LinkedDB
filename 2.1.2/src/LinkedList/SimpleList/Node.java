@@ -6,6 +6,7 @@ public class Node {
 
     public Node(){
         this.next= null;
+        this.item=null;
     }
 
     public void setItem(Object item) {
@@ -21,6 +22,6 @@ public class Node {
     }
 
     public Node getNext() {
-        return next;
+        return this.next;
     }
 }

@@ -3,8 +3,8 @@ package LinkedList.DoubleList;
 import JsonStore.Store;
 
 public class DoubleList{
-    private Node first;
-    private Node last;
+    private NodeD first;
+    private NodeD last;
     private int size;
 
     public DoubleList()
@@ -19,14 +19,14 @@ public class DoubleList{
         return this.size;
     }
 
-    public Node find(int pos)
+    public NodeD find(int pos)
     {
         return find_aux(pos);
     }
 
-    private Node find_aux(int pos)
+    private NodeD find_aux(int pos)
     {
-        Node temp = this.first;
+        NodeD temp = this.first;
         if(this.isEmpty())
         {
             return null;
@@ -52,14 +52,14 @@ public class DoubleList{
     {
         if (first == null)
         {
-            first = new Node();
+            first = new NodeD();
             first.setItem(item);
             last = first;
             this.size++;
         }
         else
         {
-            Node newFirst = new Node();
+            NodeD newFirst = new NodeD();
             newFirst.setItem(item);
             newFirst.setNext(first);
             first.setPrevious(newFirst);
@@ -74,16 +74,14 @@ public class DoubleList{
     {
         if (first == null)
         {
-            last = new Node();
+            last = new NodeD();
             last.setItem(item);
-            last.setNext();
-            last.setPrevious();
             first = last;
             this.size++;
         }
         else
         {
-            Node newLast = new Node();
+            NodeD newLast = new NodeD();
             newLast.setItem(item);
             newLast.setPrevious(last);
             last.setNext(newLast);
@@ -110,7 +108,7 @@ public class DoubleList{
     }
     public void show()
     {
-        Node temp = first;
+        NodeD temp = first;
         while (temp != null)
         {
             System.out.println(temp.getItem());
@@ -119,7 +117,7 @@ public class DoubleList{
     }
     public void showReverse()
     {
-        Node temp = last;
+        NodeD temp = last;
         while (temp != null)
         {
             System.out.println(temp.getItem());
@@ -129,7 +127,7 @@ public class DoubleList{
 
     public Boolean search(Store item)
     {
-        Node temp = first;
+        NodeD temp = first;
         while (temp != null)
         {
             if (temp.getItem().equals(item))

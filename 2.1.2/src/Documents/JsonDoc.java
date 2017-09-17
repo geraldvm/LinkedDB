@@ -1,5 +1,5 @@
 package Documents;
-import org.json.simple.JSONObject;
+
 import LinkedList.SimpleList.SimpleList;
 
 import java.time.LocalDate;
@@ -28,7 +28,7 @@ public class JsonDoc {
     }
 
     public void addAtribute(String name,boolean key,boolean required,int type, Object value){
-        addAttribute_aux(name,key,required,type,value);
+       // addAttribute_aux(name,key,required,type,value);
     }
     private void addAttribute_aux(String name,boolean key,boolean required,int type, Object value){
         //Tipo del atributo: entero, flotante, cadena, fecha-hora
