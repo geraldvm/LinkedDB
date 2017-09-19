@@ -13,6 +13,7 @@ public class CircularList {
         this.last=null;
         this.size=0;
     }
+
     public int length() {
         return this.size;
     }

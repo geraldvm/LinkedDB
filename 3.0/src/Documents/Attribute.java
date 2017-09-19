@@ -21,12 +21,12 @@ public class Attribute {
         this(name,type,key,required);
         this.setValue(value);
     }
-    public Attribute(String name, int type, boolean key,boolean required,int year, int month, int day, int hour, int min ){
+    /*public Attribute(String name, int type, boolean key,boolean required,int year, int month, int day, int hour, int min ){
         this(name, type, key, required);
         if (!isRequired()&&this.type=="date"){
             setValue(year, month, day, hour, min);
         }
-    }
+    }*/
 
     public String getType() {
         return this.type;
@@ -61,10 +61,10 @@ public class Attribute {
             System.out.println("ERROR");
         }
     }
-    private void setValue(int year, int month, int day, int hour, int min){
+    /*private void setValue(int year, int month, int day, int hour, int min){
         LocalDateTime date = LocalDateTime.of(year, month, day, hour, min);
         this.value=date;
-    }
+    }*/
 
     private String compare(boolean key){
         if (key==true){
