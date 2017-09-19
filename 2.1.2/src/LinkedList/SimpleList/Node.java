@@ -1,12 +1,16 @@
 package LinkedList.SimpleList;
 
 public class Node {
-    private Object item;
-    private Node next;//private
+    protected Object item;
+    protected Node next;//private
 
     public Node(){
         this.next= null;
         this.item=null;
+    }
+    public Node(Object item, Node next){
+        this.item=item;
+        this.next=next;
     }
 
     public void setItem(Object item) {

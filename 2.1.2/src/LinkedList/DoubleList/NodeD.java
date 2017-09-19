@@ -1,4 +1,4 @@
-package LinkedList.DoubleList;
+/*package LinkedList.DoubleList;
 
 import LinkedList.SimpleList.Node;
 
@@ -6,7 +6,7 @@ public class NodeD extends Node {
     private NodeD previous;
 
     public NodeD(){
-        super();
+        super(null,null);
         this.previous=null;
     }
 
@@ -17,4 +17,6 @@ public class NodeD extends Node {
     public NodeD getPrevious() {
         return this.previous;
     }
-}
+
+
+}*/
