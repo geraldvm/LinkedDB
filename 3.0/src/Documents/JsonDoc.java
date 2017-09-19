@@ -1,13 +1,13 @@
-/*package Documents;
+package Documents;
 
+import JsonObject.ObjectJSON;
 import LinkedList.SimpleList.SimpleList;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class JsonDoc {
     private String name;
     private SimpleList attributeList;
+    private SimpleList objectList;
 
     public JsonDoc(String name){
         this.name=name;
@@ -27,49 +27,29 @@ public class JsonDoc {
         return this.attributeList;
     }
 
-    public void addAtribute(String name,boolean key,boolean required,int type, Object value){
-       // addAttribute_aux(name,key,required,type,value);
+    public void addAttribute(String name,int type,boolean key,boolean required){
+        Attribute x = new Attribute(name,type, key, required);
+        attributeList.addLast(x);
     }
-    private void addAttribute_aux(String name,boolean key,boolean required,int type, Object value){
-        //Tipo del atributo: entero, flotante, cadena, fecha-hora
-        Object x[]=new Object[2];
-        if(type==1) {
-            Attribute<Integer> newAt = new Attribute<>();
-            newAt.setAttribute(name,"int",key,required);
-            newAt.setValue((Integer)value);
-            x[0]=type;
-            x[1]=newAt;
-            this.attributeList.addLast(x);
-            newAt.show();
-        }
-        else if (type==2) {
-            Attribute<Float> newAt = new Attribute<>();
-            newAt.setAttribute(name,"float",key,required);
-            newAt.setValue((Float)value);
-            x[0]=type;
-            x[1]=newAt;
-            this.attributeList.addLast(x);
-            newAt.show();
-        }
-        else if(type==3){
-            Attribute<String> newAt = new Attribute<>();
-            newAt.setAttribute(name,"String",key,required);
-            newAt.setValue((String) value);
-            x[0]=type;
-            x[1]=newAt;
-            this.attributeList.addLast(x);
-            newAt.show();
-        }
-        else if(type==4) {
-            Attribute<LocalDateTime> newAt = new Attribute<>();
-            newAt.setAttribute(name,"Date", key, required);
-            newAt.setValue((LocalDateTime) value);
-            x[0]=type;
-            x[1]=newAt;
-            this.attributeList.addLast(x);
-            newAt.show();
-        }
+    public void addAttribute(String name,int type, boolean key,boolean required,Object value){
+        Attribute x = new Attribute(name,type, key, required, value);
+        attributeList.addLast(x);
+    }
+    /*public void addAttribute(String name,int type, boolean key,boolean required,int year, int month, int day, int hour, int min){
+        Attribute x = new Attribute(name,type, key, required, year, month, day, hour, min);
+        attributeList.addLast(x);
+    }*/
 
+    public void addObject(Attribute z, Object value){
+        ObjectJSON x = new ObjectJSON(z, value);
+        x.show();
+        objectList.addLast(x);
     }
+
+    public Attribute getAttributte(int x){
+        Attribute z = ((Attribute) attributeList.find(x).getItem());
+        return z;
+    }
+
+
 }
-*/
