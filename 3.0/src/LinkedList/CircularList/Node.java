@@ -1,4 +1,4 @@
-package LinkedList.CircularList;
+/*package LinkedList.CircularList;
 
 import Documents.JsonDoc;
 
@@ -46,4 +46,4 @@ public class Node {
     public Node getNext() {
         return next;
     }
-}
+}*/

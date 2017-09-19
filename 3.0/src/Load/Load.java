@@ -1,4 +1,4 @@
-package Load;
+/*package Load;
 
 import Documents.JsonDoc;
 import JsonStore.Store;
@@ -60,3 +60,4 @@ public class Load{
         return  null;
     }
 }
+*/

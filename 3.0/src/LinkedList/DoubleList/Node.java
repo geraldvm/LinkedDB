@@ -1,11 +1,8 @@
 package LinkedList.DoubleList;
-
-import JsonStore.Store;
-
 public class Node {
     private Node previous;
     private Node next;
-    private Store item;
+    private Object item;
 
     public Node(){
         this.previous=null;
@@ -13,7 +10,7 @@ public class Node {
         this.item=null;
     }
 
-    public void setItem(Store item) {
+    public void setItem(Object item) {
         this.item = item;
     }
 
@@ -25,7 +22,7 @@ public class Node {
         this.next = next;
     }
 
-    public Store getItem() {
+    public Object getItem() {
         return this.item;
     }
 

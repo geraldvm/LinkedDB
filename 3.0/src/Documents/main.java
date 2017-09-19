@@ -1,4 +1,4 @@
-package Documents;
+/*package Documents;
 
 import LinkedList.SimpleList.SimpleList;
 import sun.net.www.content.text.Generic;
@@ -43,5 +43,5 @@ public class main {
         //a.show();
         //a.setValue("HELLO");
         //a.show();
-    }
-}
+ //   }
+//}

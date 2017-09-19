@@ -1,4 +1,4 @@
-package Load;
+/*package Load;
 
 import Documents.JsonDoc;
 import JsonStore.Store;
@@ -23,4 +23,4 @@ public class main {
         //fecha.format("dd/mm/yy");
         System.out.println(fecha);
     }
-}
+}*/

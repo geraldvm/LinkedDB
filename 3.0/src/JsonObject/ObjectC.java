@@ -1,4 +1,4 @@
-package JsonObject;
+/*package JsonObject;
 
 import Documents.Attribute;
 
@@ -12,4 +12,4 @@ public class ObjectC<T> extends Attribute{
         this.setValue(newValue);
 
     }
-}
+}*/
