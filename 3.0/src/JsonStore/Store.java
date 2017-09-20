@@ -1,5 +1,6 @@
 package JsonStore;
 
+import Documents.JsonDoc;
 import LinkedList.CircularList.CircularList;
 
 public class Store {
@@ -26,6 +27,10 @@ public class Store {
 
     public String getStoreName() {
         return this.storeName;
+    }
+
+    public void addDoc(JsonDoc doc){
+        this.docs.addLast(doc);
     }
 
 
