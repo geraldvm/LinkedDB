@@ -2,21 +2,22 @@ package Documents;
 
 import JsonObject.ObjectJSON;
 import LinkedList.SimpleList.SimpleList;
-
+import Documents.Attribute;
 
 public class JsonDoc {
     private String name;
-    private SimpleList attributeList;
+    private SimpleList<Attribute> attributeList;
     private SimpleList objectList;
 
     public JsonDoc(String name){
         this.name=name;
-        this.attributeList=new SimpleList();
+        this.attributeList=new SimpleList<>();
     }
 
     public JsonDoc (String name, SimpleList attributeList){
         this.name=name;
         this.attributeList=attributeList;
+
     }
 
     public String getName() {
@@ -47,7 +48,7 @@ public class JsonDoc {
     }
 
     public Attribute getAttributte(int x){
-        Attribute z = ((Attribute) attributeList.find(x).getItem());
+        Attribute z = attributeList.find(x).getItem();
         return z;
     }
 
