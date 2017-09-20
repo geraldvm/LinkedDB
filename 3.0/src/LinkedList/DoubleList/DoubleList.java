@@ -2,9 +2,9 @@ package LinkedList.DoubleList;
 
 import JsonStore.Store;
 
-public class DoubleList{
-    private Node first;
-    private Node last;
+public class DoubleList<T>{
+    private Node<T> first;
+    private Node<T> last;
     private int size;
 
     public DoubleList()
@@ -19,14 +19,14 @@ public class DoubleList{
         return this.size;
     }
 
-    public Node find(int pos)
+    public Node<T> find(int pos)
     {
         return find_aux(pos);
     }
 
-    private Node find_aux(int pos)
+    private Node<T> find_aux(int pos)
     {
-        Node temp = this.first;
+        Node<T> temp = this.first;
         if(this.isEmpty())
         {
             return null;
@@ -48,18 +48,18 @@ public class DoubleList{
         return this.first==null;
     }
 
-    public void addFirst(Store item)
+    public void addFirst(T item)
     {
         if (this.first == null)
         {
-            this.first = new Node();
+            this.first = new Node<>();
             this.first.setItem(item);
             this.last = this.first;
             this.size++;
         }
         else
         {
-            Node newFirst = new Node();
+            Node<T> newFirst = new Node<>();
             newFirst.setItem(item);
             newFirst.setNext(this.first);
             this.first.setPrevious(newFirst);
@@ -70,34 +70,34 @@ public class DoubleList{
 
     }
 
-    public void addLast(Store item)
+    public void addLast(T item)
     {
         if (this.first == null)
         {
-            this.last = new Node();
+            this.last = new Node<T>();
             this.last.setItem(item);
             this.first = this.last;
             this.size++;
         }
         else
         {
-            Node newLast = new Node();
+            Node<T> newLast = new Node<>();
             newLast.setItem(item);
-            newLast.setPrevious(last);
-            last.setNext(newLast);
-            last = newLast;
+            newLast.setPrevious(this.last);
+            this.last.setNext(newLast);
+            this.last = newLast;
             this.size++;
         }
     }
     public void eraseLast()
     {
-        last = last.getPrevious();
-        if (first==null){
+        this.last = this.last.getPrevious();
+        if (this.first==null){
             System.out.println("lista vacia");
         }
-        else if (last != null)
+        else if (this.last != null)
         {
-            last.setNext(null);
+            this.last.setNext(null);
             this.size--;
         }
         else
@@ -108,26 +108,18 @@ public class DoubleList{
     }
     public void show()
     {
-        Node temp = this.first;
+        Node<T> temp = this.first;
         while (temp != null)
         {
             System.out.println(temp.getItem());
             temp = temp.getNext();
         }
     }
-    public void showReverse()
-    {
-        Node temp = last;
-        while (temp != null)
-        {
-            System.out.println(temp.getItem());
-            temp = temp.getPrevious();
-        }
-    }
 
-    public Boolean search(Store item)
+
+    public Boolean search(T item)
     {
-        Node temp = this.first;
+        Node<T> temp = this.first;
         while (temp != null)
         {
             if (temp.getItem().equals(item))

@@ -35,7 +35,6 @@ public class ObjectJSON {
                 System.out.println("DEFAULT");
                 return false;
         }
-
     }
     public void show(){
         System.out.println(this.value);

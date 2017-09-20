@@ -1,5 +1,7 @@
 package Load;
-/*
+
+import Documents.JsonDoc;
+import JsonStore.Store;
 import LinkedList.DoubleList.DoubleList;
 import jdk.nashorn.internal.parser.JSONParser;
 import LinkedList.CircularList.CircularList;
@@ -9,14 +11,13 @@ import java.io.File;
 public class LoadFile {
 
     //private JSONParser file;
-    private String path;
-    private DoubleList storeList;
+    //private String path;
+    private DoubleList<Store> storeList;
     private CircularList docList;
 
-    public LoadFile(String path){
+    public LoadFile(){
        // this.file = new JSONParser();
-        this.path = path;
-        this.storeList = new DoubleList();
+        this.storeList = new DoubleList<>();
         this.docList = new CircularList();
 
 
@@ -38,18 +39,25 @@ public class LoadFile {
         File[] listF = exist("Linked");
         for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
         {
-            this.storeList.addLast(listF[i].getName());
+            Store temp= new Store(listF[i].getName(),null);
+            this.storeList.addLast(temp);
+            System.out.println(temp.getStoreName());
+            this.loadDocs_aux(temp.getStoreName());
+
+
         }
         //this.storeList.show();
     }
     private void loadDocs_aux(String store)
     {
-        File[] listF = exist("Linked"+store);
+        File[] listF = exist("Linked\\"+store);
         for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
         {
-            this.docList.addLast(listF[i].getName());
+            //DEPURAR
+            JsonDoc temp = new JsonDoc(listF[i].getName());
+            this.docList.addLast(temp);
+            System.out.println(temp.getName());
         }
-        //this.storeList.show();
     }
 
     public File[] exist(String directory)
@@ -73,4 +81,3 @@ public class LoadFile {
         return this.storeList;
     }
 }
-*/

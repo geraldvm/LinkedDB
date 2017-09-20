@@ -1,8 +1,8 @@
 package LinkedList.DoubleList;
-public class Node {
-    private Node previous;
-    private Node next;
-    private Object item;
+public class Node<T> {
+    private Node<T> previous;
+    private Node<T> next;
+    private T item;
 
     public Node(){
         this.previous=null;
@@ -10,27 +10,27 @@ public class Node {
         this.item=null;
     }
 
-    public void setItem(Object item) {
+    public void setItem(T item) {
         this.item = item;
     }
 
-    public void setPrevious(Node previous) {
+    public void setPrevious(Node<T> previous) {
         this.previous = previous;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 
-    public Object getItem() {
+    public T getItem() {
         return this.item;
     }
 
-    public Node getPrevious() {
+    public Node<T> getPrevious() {
         return previous;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
 }
