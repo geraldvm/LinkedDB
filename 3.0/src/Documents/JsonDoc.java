@@ -7,16 +7,18 @@ import Documents.Attribute;
 public class JsonDoc {
     private String name;
     private SimpleList<Attribute> attributeList;
-    private SimpleList objectList;
+    private SimpleList<ObjectJSON> objectList;
 
     public JsonDoc(String name){
         this.name=name;
         this.attributeList=new SimpleList<>();
+        this.objectList=new SimpleList<>();
     }
 
-    public JsonDoc (String name, SimpleList attributeList){
+    public JsonDoc (String name, SimpleList<Attribute> attributeList, SimpleList<ObjectJSON> objectList){
         this.name=name;
         this.attributeList=attributeList;
+        this.objectList=objectList;
 
     }
 
