@@ -3,9 +3,9 @@ package LinkedList.SimpleList;
 import Documents.Attribute;
 import sun.net.www.content.text.Generic;
 
-public class SimpleList {
-    private Node first;
-    private Node last;
+public class SimpleList<T> {
+    private Node<T> first;
+    private Node<T> last;
     private int size=0;
 
     public SimpleList(){
@@ -24,7 +24,7 @@ public class SimpleList {
 
     public void show()
     {
-        Node temp = first;
+        Node<T> temp = first;
         while (temp != null)
         {
             System.out.println(temp.getItem());
@@ -32,10 +32,10 @@ public class SimpleList {
         }
     }
 
-    public void addLast(Object item)
+    public void addLast(T item)
     {
 
-        Node newLast = new Node();
+        Node<T> newLast = new Node<>();
         newLast.setItem(item);
 
         if (this.isEmpty())
@@ -54,7 +54,7 @@ public class SimpleList {
 
     public void erase(Object item)
     {
-        Node temp;
+        Node<T> temp;
         temp=this.first;
         if (temp.getItem()==item)
         {
@@ -88,9 +88,9 @@ public class SimpleList {
 
     }
 
-    public void update(Object item, Object newValue)
+    public void update(T item, T newValue)
     {
-        Node temp = first;
+        Node<T> temp = first;
         if (last.getItem()==item)
         {
             last.setItem(newValue);
@@ -106,12 +106,12 @@ public class SimpleList {
 
     }
 
-    public void search(Object value)
+    public void search(T value)
     {
         search(value, this.first);
     }
 
-    private void search(Object value, Node temp)
+    private void search(T value, Node<T> temp)
     {
 
         if(temp.getItem()==value)
@@ -135,14 +135,14 @@ public class SimpleList {
         return x;
     }
 
-    public Node find(int pos)
+    public Node<T> find(int pos)
     {
         return find_aux(pos);
     }
 
-    private Node find_aux(int pos)
+    private Node<T> find_aux(int pos)
     {
-        Node temp = this.first;
+        Node<T> temp = this.first;
         if(this.isEmpty())
         {
             return null;

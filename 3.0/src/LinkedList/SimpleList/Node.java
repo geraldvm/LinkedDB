@@ -1,31 +1,31 @@
 package LinkedList.SimpleList;
 
-public class Node {
-    protected Object item;
-    protected Node next;//private
+public class Node<T> {
+    protected T item;
+    protected Node<T> next;//private
 
     public Node(){
         this.next= null;
         this.item=null;
     }
-    public Node(Object item, Node next){
+    public Node(T item, Node<T> next){
         this.item=item;
         this.next=next;
     }
 
-    public void setItem(Object item) {
+    public void setItem(T item) {
         this.item = item;
     }
 
-    public Object getItem() {
+    public T getItem() {
         return this.item;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
 
-    public Node getNext() {
+    public Node<T> getNext() {
         return this.next;
     }
 }
