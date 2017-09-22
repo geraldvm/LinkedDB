@@ -42,12 +42,14 @@ public class SimpleList<T> {
         {
             last = newLast;
             first = newLast;
+            ++this.size;
         }
 
         else
         {
             last.setNext(newLast);
             last = newLast;
+            ++this.size;
 
         }
     }

@@ -15,6 +15,8 @@ public class Attribute {
         this.type=type_aux(type);
         this.key=compare(key);
         this.required=required;
+        this.value=null;
+
     }
 
     public Attribute(String name, int type, boolean key,boolean required, Object value){
@@ -38,6 +40,10 @@ public class Attribute {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getKey() {
+        return this.key;
     }
 
     public boolean isRequired() {
