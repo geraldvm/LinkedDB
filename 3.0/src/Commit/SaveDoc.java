@@ -1,5 +1,5 @@
 package Commit;
-
+import java.io.*;
 import Documents.Attribute;
 import JsonObject.ObjectJSON;
 import LinkedList.SimpleList.SimpleList;
@@ -16,7 +16,6 @@ public class SaveDoc {
         this.attribute=attribute;
         this.obj=obj;
         this.jsonFile= new JSONObject();
-        System.out.println(this.attribute.length());
 
     }
 
@@ -26,19 +25,40 @@ public class SaveDoc {
         if(!this.attribute.isEmpty()){
             JSONObject attribJson = new JSONObject();
             for(int i=0;i<this.attribute.length();++i){
+
                 Attribute temp = this.attribute.find(i).getItem();
                 attribJson.put("name",temp.getName());
+
                 attribJson.put("type",temp.getType());
                 attribJson.put("key",temp.getKey());
                 attribJson.put("required", ((Boolean) temp.isRequired()));
                 attribJson.put("value",temp.getValue());
                 attribList.put(temp.getName(),attribJson);
+                /*System.out.println(temp.getName());
+                System.out.println(temp.getType()+" "+temp.getKey()+" "+temp.getValue()+" "+temp.isRequired());*/
+                System.out.println(attribList.toString());
             }
+            //System.out.println(attribJson.toString());
             this.jsonFile.put("AttributeList",attribList);
         }
 
     }
     public void show(){
         System.out.println(this.jsonFile);
+    }
+    public void createFile() {
+        try {
+
+            FileWriter file = new FileWriter("C:\\Users\\geral\\Desktop\\prueba.json");
+            file.write(this.jsonFile.toJSONString());
+            file.flush();
+            file.close();
+        }
+
+        catch(IOException e){
+            //manejar error
+        }
+        //System.out.println(this.jsonFile.toJSONString());
+
     }
 }
