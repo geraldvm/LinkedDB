@@ -19,6 +19,14 @@ public class ObjectJSON {
         }
     }
 
+    public Object getValue() {
+        return this.value;
+    }
+
+    public String getNameAttribute() {
+        return this.nameAttr;
+    }
+
     private boolean isSameType(Object value){
         String x = value.getClass().getSimpleName();
 

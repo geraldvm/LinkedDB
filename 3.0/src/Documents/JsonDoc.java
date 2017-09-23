@@ -54,5 +54,7 @@ public class JsonDoc {
         return z;
     }
 
-
+    public SimpleList<ObjectJSON> getObjectList() {
+        return this.objectList;
+    }
 }

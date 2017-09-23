@@ -9,9 +9,13 @@ public class Main {
         a.addAttribute("FLOTANTES",2,false,false,2.85);
         a.addAttribute("name",3,false,false,"454");
         //a.addAttribute("name",4,false,false,2017,02,45,9,20);
-       SaveDoc x = new SaveDoc("TEST",a.getAttributeList(),null);
-       x.addAttrib();
-       //x.show();
+        a.addObject(a.getAttributte(0),455);
+        a.addObject(a.getAttributte(1),455);
+        a.addObject(a.getAttributte(2),"TEST");
+        SaveDoc x = new SaveDoc("StoreA","TEST",a.getAttributeList(),a.getObjectList());
+        x.addAttribute();
+        x.addObject();
+        x.show();
         x.createFile();
     }
 }
