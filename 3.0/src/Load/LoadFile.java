@@ -17,12 +17,12 @@ public class LoadFile {
     //private JSONParser file;
     //private String path;
     private DoubleList<Store> storeList;
-    private CircularList docList;
+    //private CircularList<JsonDoc> docList;
 
     public LoadFile(){
        // this.file = new JSONParser();
         this.storeList = new DoubleList<>();
-        this.docList = new CircularList();
+        //this.docList = new CircularList<>();
 
 
     }
@@ -32,9 +32,9 @@ public class LoadFile {
         loadStores_aux();
     }
 
-    public void loadDocs(){
+    /*public void loadDocs(){
         loadDocs_aux("StoreA");
-    }
+    }*/
 
 
 
@@ -43,26 +43,29 @@ public class LoadFile {
         File[] listF = exist("Linked");
         for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
         {
-            Store temp= new Store(listF[i].getName(),null);
+            Store temp= new Store(listF[i].getName(),this.loadDocs(listF[i].getName()));
             this.storeList.addLast(temp);
             System.out.println(temp.getStoreName());
-            this.loadDocs_aux(temp.getStoreName());
-
-
         }
         //this.storeList.show();
     }
-    private void loadDocs_aux(String store)
+    private CircularList<JsonDoc> loadDocs(String store)
     {
 
         File[] listF = exist("Linked\\"+store);
+        CircularList<JsonDoc> docList = new CircularList<>();
         for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
         {
             //DEPURAR
             JsonDoc temp = new JsonDoc(listF[i].getName());
-            this.docList.addLast(temp);
+            JsonLoad readDoc = new JsonLoad(store,listF[i].getName());
+            temp.setAttributeList(readDoc.attributesREAD());
+            temp.setObjectList(readDoc.objectsREAD());
+            //AGREGAR LECTURA DE OBJETOS
+            docList.addLast(temp);
             System.out.println(temp.getName());
         }
+        return docList;
     }
 
     public File[] exist(String directory)
@@ -81,10 +84,10 @@ public class LoadFile {
         }
         return  null;
     }
-    private SimpleList loadAttributeList(String docName){
+    private SimpleList loadAttributeList(String storeName,String docName){
         SimpleList<Attribute> attriList = new SimpleList<>();
-        JsonLoad a = new JsonLoad();
-        JSONObject x = a.read(docName);
+        JsonLoad a = new JsonLoad(storeName,docName);
+        JSONObject x = a.read();
 
         for (int i=0; i<x.keySet().toArray().length;++i){
             JSONObject at = ((JSONObject) x.get(x.keySet().toArray()[i]));

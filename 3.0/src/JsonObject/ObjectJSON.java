@@ -1,16 +1,22 @@
 package JsonObject;
 
 import Documents.Attribute;
+import LinkedList.SimpleList.SimpleList;
 
 public class ObjectJSON {
-    private Attribute attr;
+    private SimpleList<Attribute> attributeList;
     private Object value;
-    private String nameAttr;
+    private String nameAttribute;
 
-    public ObjectJSON(Attribute Attr,Object value){
-        this.attr=Attr;
-        this.nameAttr=this.attr.getName();
+    public ObjectJSON(SimpleList<Attribute> attributeList, String nameAttribute, Object value){
+        this.attributeList=attributeList;
+        this.nameAttribute=nameAttribute;
         setObject(value);
+    }
+    public ObjectJSON(String nameAttribute, Object value){
+        //This ONLY FOR LOAD
+        this.nameAttribute=nameAttribute;
+        this.value=value;
     }
 
     public void setObject(Object value){
@@ -24,26 +30,30 @@ public class ObjectJSON {
     }
 
     public String getNameAttribute() {
-        return this.nameAttr;
+        return this.nameAttribute;
     }
 
     private boolean isSameType(Object value){
         String x = value.getClass().getSimpleName();
-
-        switch (x){
-            case "Integer":
-                return this.attr.getType()=="int";
-            case "Double":
-                return this.attr.getType()=="float";
-            case "String":
-                return this.attr.getType()=="String";
-            case "LocalDateTime":
-                return this.attr.getType()=="date";
-            default:
-                System.out.println("DEFAULT");
-                return false;
-        }
+        for(int i=0;i<this.attributeList.length();++i){
+            if(attributeList.find(i).getItem().getName()==this.nameAttribute){
+                switch (x){
+                    case "Integer":
+                        return this.attributeList.find(i).getItem().getType()=="int";
+                    case "Double":
+                        return this.attributeList.find(i).getItem().getType()=="float";
+                    case "String":
+                        return this.attributeList.find(i).getItem().getType()=="String";
+                    case "LocalDateTime":
+                        return this.attributeList.find(i).getItem().getType()=="date";
+                    default:
+                        System.out.println("DEFAULT");
+                        return false;
+                }
+            }
+        }return false;
     }
+
     public void show(){
         System.out.println(this.value);
     }

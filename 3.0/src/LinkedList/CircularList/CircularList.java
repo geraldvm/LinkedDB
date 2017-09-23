@@ -1,10 +1,10 @@
 package LinkedList.CircularList;
 import LinkedList.DoubleList.Node;
 
-public class CircularList {
+public class CircularList<T> {
 
-    private Node first ;
-    private Node last;
+    private Node<T> first ;
+    private Node<T> last;
     private int size;
 
     public CircularList()
@@ -24,7 +24,7 @@ public class CircularList {
 
 
 
-    public void addLast(Object item)
+    public void addLast(T item)
     {
         if (first == null)
         {
@@ -37,7 +37,7 @@ public class CircularList {
         }
         else
         {
-            Node newLast = new Node();
+            Node<T> newLast = new Node();
             newLast.setItem(item);
             newLast.setPrevious(last);
             newLast.setNext(first);
@@ -49,7 +49,7 @@ public class CircularList {
     }
     public void eraseLast()
     {
-        Node temp = new Node();
+        Node<T> temp = new Node();
         temp = last.getPrevious().getPrevious();
         last = last.getPrevious();
         last.setPrevious(temp);
@@ -58,7 +58,7 @@ public class CircularList {
     }
     public void show()
     {
-        Node temp = first;
+        Node<T> temp = first;
 
         while (temp.getNext() != first)
         {
@@ -71,7 +71,7 @@ public class CircularList {
 
     public Boolean search(Object item)
     {
-        Node temp = first;
+        Node<T> temp = first;
         while (temp.getNext() != first)
         {
             if (temp.getItem()==item)
@@ -91,14 +91,14 @@ public class CircularList {
 
     }
 
-    public Node find(int pos)
+    public Node<T> find(int pos)
     {
         return find_aux(pos);
     }
 
-    private Node find_aux(int pos)
+    private Node<T> find_aux(int pos)
     {
-        Node temp = this.first;
+        Node<T> temp = this.first;
         if(this.isEmpty())
         {
             return null;

@@ -16,7 +16,14 @@ public class Attribute {
         this.key=compare(key);
         this.required=required;
         this.value=null;
-
+    }
+    public Attribute(String name, String type, boolean key,boolean required, Object value){
+        this.name=name;
+        this.type=type;
+        this.key=compare(key);
+        this.required=required;
+        this.value=null;
+        this.setValue(value);
     }
 
     public Attribute(String name, int type, boolean key,boolean required, Object value){

@@ -9,9 +9,9 @@ public class Main {
         a.addAttribute("FLOTANTES",2,false,false,2.85);
         a.addAttribute("name",3,false,false,"454");
         //a.addAttribute("name",4,false,false,2017,02,45,9,20);
-        a.addObject(a.getAttributte(0),455);
-        a.addObject(a.getAttributte(1),455);
-        a.addObject(a.getAttributte(2),"TEST");
+        a.addObject("ID",455);
+        a.addObject("FLOTANTES",455);
+        a.addObject("name","TEST");
         SaveDoc x = new SaveDoc("StoreA","TEST",a.getAttributeList(),a.getObjectList());
         x.addAttribute();
         x.addObject();

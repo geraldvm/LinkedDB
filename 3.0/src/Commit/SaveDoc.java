@@ -36,7 +36,7 @@ public class SaveDoc {
                 ObjectJSON temp = this.obj.find(i).getItem();
                 objJson.put("Value",temp.getValue());
                 objJson.put("Attribute",temp.getNameAttribute());
-                objList.put(i,objJson);
+                objList.put(((Integer) i),objJson);
             }
             this.jsonFile.put("ObjectList",objList);
         }

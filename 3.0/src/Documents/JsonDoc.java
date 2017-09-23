@@ -43,8 +43,8 @@ public class JsonDoc {
         attributeList.addLast(x);
     }*/
 
-    public void addObject(Attribute z, Object value){
-        ObjectJSON x = new ObjectJSON(z, value);
+    public void addObject(String attribute, Object value){
+        ObjectJSON x = new ObjectJSON(this.attributeList, attribute, value);
         x.show();
         this.objectList.addLast(x);
     }
@@ -56,5 +56,13 @@ public class JsonDoc {
 
     public SimpleList<ObjectJSON> getObjectList() {
         return this.objectList;
+    }
+
+    public void setAttributeList(SimpleList<Attribute> attributeList) {
+        this.attributeList = attributeList;
+    }
+
+    public void setObjectList(SimpleList<ObjectJSON> objectList) {
+        this.objectList = objectList;
     }
 }
