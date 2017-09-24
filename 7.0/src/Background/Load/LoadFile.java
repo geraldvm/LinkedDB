@@ -1,16 +1,14 @@
-package Load;
+package Background.Load;
 
-import Documents.Attribute;
-import Documents.JsonDoc;
-import JsonStore.Store;
-import LinkedList.DoubleList.DoubleList;
-import LinkedList.SimpleList.SimpleList;
-import jdk.nashorn.internal.parser.JSONParser;
-import LinkedList.CircularList.CircularList;
+import Background.Documents.Attribute;
+import Background.Documents.JsonDoc;
+import Background.JsonStore.Store;
+import Background.LinkedList.SimpleList.SimpleList;
+import Background.LinkedList.DoubleList.DoubleList;
+import Background.LinkedList.CircularList.CircularList;
 import org.json.simple.JSONObject;
-
 import java.io.File;
-import java.lang.reflect.Type;
+
 
 public class LoadFile {
 
