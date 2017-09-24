@@ -15,6 +15,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
        window = primaryStage;
        window.setTitle("LinkedDB");
 
