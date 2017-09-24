@@ -30,7 +30,7 @@ public class JsonDoc {
         return this.attributeList;
     }
 
-    public void addAttribute(String name,int type,boolean key,boolean required){
+    public void addAttribute(String name, int type, boolean key, boolean required){
         Attribute x = new Attribute(name,type, key, required);
         this.attributeList.addLast(x);
     }
@@ -43,10 +43,12 @@ public class JsonDoc {
         attributeList.addLast(x);
     }*/
 
-    public void addObject(String attribute, Object value){
-        ObjectJSON x = new ObjectJSON(this.attributeList, attribute, value);
-        x.show();
-        this.objectList.addLast(x);
+    public void addObject(String attribute,Object PK, Object value){
+        for (int i=0;i<this.attributeList.length();++i){
+            ObjectJSON x = new ObjectJSON(this.getAttributte(i), PK,value);
+            this.objectList.addLast(x);
+        }
+
     }
 
     public Attribute getAttributte(int x){

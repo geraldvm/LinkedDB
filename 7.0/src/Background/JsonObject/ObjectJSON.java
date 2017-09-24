@@ -7,16 +7,26 @@ public class ObjectJSON {
     private SimpleList<Attribute> attributeList;
     private Object value;
     private String nameAttribute;
+    private Object primaryKey;
+    private Attribute attribute;
 
-    public ObjectJSON(SimpleList<Attribute> attributeList, String nameAttribute, Object value){
+    public ObjectJSON(SimpleList<Attribute> attributeList, Object primaryKey, Object value){
         this.attributeList=attributeList;
         this.nameAttribute=nameAttribute;
+        this.primaryKey=primaryKey;
         setObject(value);
     }
-    public ObjectJSON(String nameAttribute, Object value){
+    public ObjectJSON(Attribute attribute, Object value, Object primaryKey){
+        this.attribute=attribute;
+        this.nameAttribute=this.attribute.getName();
+        this.primaryKey=primaryKey;
+        setObject(value);
+    }
+    public ObjectJSON(String nameAttribute, Object value,Object primaryKey){
         //This ONLY FOR LOAD
         this.nameAttribute=nameAttribute;
         this.value=value;
+        this.primaryKey=primaryKey;
     }
 
     public void setObject(Object value){

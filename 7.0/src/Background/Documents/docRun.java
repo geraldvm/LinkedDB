@@ -7,7 +7,7 @@ public class docRun {
         a.addAttribute("FLOTANTES",2,false,false,2.85);
         a.addAttribute("name",3,false,false,"A.");
         //a.addAttribute("name",4,false,false,2017,02,45,9,20);
-        a.addObject("ID",45);
+        //a.addObject("ID",45);
         System.out.println(a.getObjectList().find(0).getItem().getValue());
     }
 }

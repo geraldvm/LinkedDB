@@ -8,6 +8,10 @@ public class Store {
     private String storeName;
     private CircularList docs;
 
+    public Store (String storeName){
+        this.storeName=storeName;
+        this.docs=null;
+    }
     public Store(String storeName, CircularList docs){
         this.storeName=storeName;
         this.docs= docs;
@@ -29,9 +33,20 @@ public class Store {
         return this.storeName;
     }
 
-    public void addDoc(JsonDoc doc){
-        this.docs.addLast(doc);
+
+
+
+    private void newDoc(String name){
+        JsonDoc a = new JsonDoc(name);
+        this.docs.addLast(a);
     }
+    public void addAtrribute(JsonDoc a,String name,int type, boolean key, boolean required, Object value){
+        a.addAttribute(name,type,key,required,value);
+    }
+    public void addAtrribute(JsonDoc a,String name,int type, boolean key, boolean required){
+        a.addAttribute(name,type,key,required);
+    }
+
 
 
 }
