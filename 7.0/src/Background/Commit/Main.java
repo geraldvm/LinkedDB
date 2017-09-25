@@ -1,7 +1,7 @@
 package Background.Commit;
 
 import Background.Documents.JsonDoc;
-
+/*
 public class Main {
     public static void main(String[] args) {
         JsonDoc a = new JsonDoc("TEST");
@@ -19,3 +19,4 @@ public class Main {
         x.createFile();
     }
 }
+*/

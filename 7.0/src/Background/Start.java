@@ -3,10 +3,11 @@ package Background;
 import Background.JsonStore.Store;
 import Background.LinkedList.DoubleList.DoubleList;
 
-public class Main {
+public class Start {
+
     private DoubleList<Store> storeList;
 
-    public Main(){
+    public Start(){
         this.storeList = new DoubleList<>();
     }
 
@@ -29,6 +30,4 @@ public class Main {
     public int getAmountStore(){
         return this.storeList.length();
     }
-
-
 }

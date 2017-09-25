@@ -1,4 +1,4 @@
-import java.time.LocalDateTime;
+import Background.Start;
 
 public class test {
     public static void main(String[] args) {
@@ -8,6 +8,13 @@ public class test {
         System.out.println(fecha);
         z=fecha;
         System.out.println(z.getClass().getSimpleName());*/
+
+        Start z = new Start();
+        z.newStore("StoreA");
+        z.newStore("StoreB");
+        z.newStore("StoreC");
+
+        System.out.println(z.getAmountStore());
 
     }
 }

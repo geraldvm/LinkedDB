@@ -6,11 +6,11 @@ import Background.LinkedList.CircularList.CircularList;
 public class Store {
 
     private String storeName;
-    private CircularList docs;
+    private CircularList<JsonDoc> docs;
 
     public Store (String storeName){
         this.storeName=storeName;
-        this.docs=null;
+        this.docs=new CircularList<>();
     }
     public Store(String storeName, CircularList docs){
         this.storeName=storeName;
@@ -25,7 +25,7 @@ public class Store {
         this.storeName = storeName;
     }
 
-    public CircularList getDocs() {
+    public CircularList<JsonDoc> getDocs() {
         return this.docs;
     }
 
@@ -36,7 +36,7 @@ public class Store {
 
 
 
-    private void newDoc(String name){
+    public void newDoc(String name){
         JsonDoc a = new JsonDoc(name);
         this.docs.addLast(a);
     }

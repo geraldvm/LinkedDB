@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/*
 public class JsonLoad {
 
     private String storeName;
@@ -81,15 +81,15 @@ public class JsonLoad {
 
     }*/
 
-    public static void main(String[] args) {
+  //  public static void main(String[] args) {
         /*JSONObject z= read();
         System.out.println(z.keySet().toArray().length);
         System.out.println(z.get(z.keySet().toArray()[0]));
         */
-    }
+   // }
 
 
 
 
 
-}
+//}*/

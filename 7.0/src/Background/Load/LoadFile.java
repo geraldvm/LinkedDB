@@ -8,7 +8,7 @@ import Background.LinkedList.DoubleList.DoubleList;
 import Background.LinkedList.CircularList.CircularList;
 import org.json.simple.JSONObject;
 import java.io.File;
-
+/*
 
 public class LoadFile {
 
@@ -36,7 +36,7 @@ public class LoadFile {
 
 
 
-    private void loadStores_aux()
+   /* private void loadStores_aux()
     {
         File[] listF = exist("Linked");
         for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
@@ -100,3 +100,4 @@ public class LoadFile {
         return this.storeList;
     }
 }
+*/

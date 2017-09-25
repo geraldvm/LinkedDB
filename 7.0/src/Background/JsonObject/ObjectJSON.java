@@ -14,7 +14,8 @@ public class ObjectJSON {
         this.attributeList=attributeList;
         this.nameAttribute=nameAttribute;
         this.primaryKey=primaryKey;
-        setObject(value);
+        this.value=value;
+        //setObject(value);
     }
     public ObjectJSON(Attribute attribute, Object value, Object primaryKey){
         this.attribute=attribute;
@@ -22,7 +23,7 @@ public class ObjectJSON {
         this.primaryKey=primaryKey;
         setObject(value);
     }
-    public ObjectJSON(String nameAttribute, Object value,Object primaryKey){
+    public ObjectJSON(String nameAttribute, Object primaryKey,Object value){
         //This ONLY FOR LOAD
         this.nameAttribute=nameAttribute;
         this.value=value;

@@ -44,10 +44,12 @@ public class JsonDoc {
     }*/
 
     public void addObject(String attribute,Object PK, Object value){
-        for (int i=0;i<this.attributeList.length();++i){
+        ObjectJSON x = new ObjectJSON(attribute, PK,value);
+        /*for (int i=0;i<this.attributeList.length();++i){
             ObjectJSON x = new ObjectJSON(this.getAttributte(i), PK,value);
             this.objectList.addLast(x);
-        }
+        }*/
+        this.objectList.addLast(x);
 
     }
 
