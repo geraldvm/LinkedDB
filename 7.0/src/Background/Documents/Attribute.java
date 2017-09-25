@@ -6,6 +6,7 @@ public class Attribute {
 
     private String name;
     private String key;
+    private boolean primary;
     private boolean required;
     private Object value;
     private String type;
@@ -13,6 +14,7 @@ public class Attribute {
     public Attribute(String name, int type, boolean key,boolean required){
         this.name=name;
         this.type=type_aux(type);
+        this.primary=key;
         this.key=compare(key);
         this.required=required;
         this.value=null;
@@ -62,6 +64,10 @@ public class Attribute {
         this.type= type;
         this.key=compare(key);
         this.required = required;
+    }
+
+    public boolean isPrimary() {
+        return this.primary;
     }
 
     public void setValue(Object value){

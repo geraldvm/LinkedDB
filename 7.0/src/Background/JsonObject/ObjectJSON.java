@@ -69,6 +69,17 @@ public class ObjectJSON {
         System.out.println(this.value);
     }
 
+    public void create (SimpleList<Attribute> attributeList, Object... value){
+
+        for (int i=0;i<this.attributeList.length();++i){
+
+        }
+        this.nameAttribute=nameAttribute;
+        this.primaryKey=primaryKey;
+        this.value=value;
+        //setObject(value);
+    }
+
 
 
 

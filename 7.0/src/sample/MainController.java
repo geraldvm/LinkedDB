@@ -53,7 +53,6 @@ public class MainController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TreeItem<String> root = new TreeItem<>("Root");
-
         Start z = new Start();
         z.newStore("StoreA");
         z.newStore("StoreB");
@@ -67,6 +66,9 @@ public class MainController implements Initializable{
         z.getStore(0).getDocs().find(0).getItem().addObject("ID","ID","NUEL");
         System.out.println(z.getStore(0).getDocs().find(0).getItem().getObjectList().find(0).getItem().getValue());
         createTree(z);
+
+    }
+    private void createTable(){
 
         rootTable.getChildren().setAll(per1,per2,per3,per4);
 
@@ -90,7 +92,6 @@ public class MainController implements Initializable{
         tableView.setRoot(rootTable);
         tableView.setShowRoot(false);
     }
-    private void createTable(){}
 
     public void mouseClick(MouseEvent mouseEvent){
             if(mouseEvent.getClickCount()==2){
