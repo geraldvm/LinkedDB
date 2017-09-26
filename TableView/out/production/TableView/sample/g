@@ -1,40 +1,7 @@
-package sample;
-
-import Background.Documents.Attribute;
-import Background.JsonStore.Store;
-import Background.LinkedList.DoubleList.DoubleList;
-import Background.LinkedList.SimpleList.SimpleList;
-import com.sun.org.apache.xpath.internal.SourceTree;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.ComboBoxTreeTableCell;
-import javafx.scene.control.cell.TextFieldTreeTableCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import Background.Start;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
-public class MainController implements Initializable{
-
+@FXML
+    TreeView<String> treeView;
     @FXML
-    private Button Commit;
-    @FXML
-    private TableView tableView;
-    @FXML
-    private TreeView<String> treeView;
-    @FXML
-    private ContextMenu contMenu;
-
+    ContextMenu contMenu;
 
     Image folder = new Image(getClass().getResourceAsStream("/img/store.png"));
     Image file = new Image(getClass().getResourceAsStream("/img/a.png"));
@@ -42,12 +9,26 @@ public class MainController implements Initializable{
 
 
     //-----------------Table----------------------
+    @FXML
+    private TreeTableView<Person> tableView;
+    @FXML
+    private TreeTableColumn<Person, String> col1;
+    @FXML
+    private TreeTableColumn<Person, String> col2;
+    @FXML
+    private TreeTableColumn<Person, Number> col3;
+
+    TreeItem<Person> per1 = new TreeItem<>(new Person("Gerald","gerald@hotmail.com",12));
+    TreeItem<Person> per2 = new TreeItem<>(new Person("Paulina","p@gmail.com",25));
+    TreeItem<Person> per3 = new TreeItem<>(new Person("Maria","mar_s@gmail.com",45));
+    TreeItem<Person> per4 = new TreeItem<>(new Person("Delroy","l@hotmail.com",15));
+
+    TreeItem<Person> rootTable = new TreeItem<>(new Person("Name","email",0));
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //TreeItem<String> root = new TreeItem<>("Root");
-        Commit.setDisable(true);
         Start z = new Start();
         z.newStore("StoreA");
         z.newStore("StoreB");
@@ -60,23 +41,40 @@ public class MainController implements Initializable{
         z.getStore(0).getDocs().find(0).getItem().addObject("ID","ID","MANUEL");
         z.getStore(0).getDocs().find(0).getItem().addObject("ID","ID","NUEL");
         System.out.println(z.getStore(0).getDocs().find(0).getItem().getObjectList().find(0).getItem().getValue());
-        SimpleList<Attribute> colAtrib = z.getStore(0).getDocs().find(0).getItem().getAttributeList();
         createTree(z);
-        createTable(z);
 
     }
+    private void createTable(){
 
+        rootTable.getChildren().setAll(per1,per2,per3,per4);
+
+        for(int i=0;i<)
+
+        col1.setCellValueFactory(param -> param.getValue().getValue().getNameProperty());
+        col2.setCellValueFactory(param -> param.getValue().getValue().getEmailProperty());
+        col3.setCellValueFactory(param -> param.getValue().getValue().getAgeProperty());
+
+        col1.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
+        col1.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<Person, String>>() {
+            @Override
+            public void handle(TreeTableColumn.CellEditEvent<Person, String> event) {
+                TreeItem<Person> currentEditingPerson= tableView.getTreeItem(event.getTreeTablePosition().getRow());
+                currentEditingPerson.getValue().setNameProperty(event.getNewValue());
+            }
+        });
+        ObservableList<String> list = FXCollections.observableArrayList();
+        list.addAll("@hotmail.com","@gmail.com","@dropbox.com");
+        col2.setCellFactory(ComboBoxTreeTableCell.forTreeTableColumn((list)));
+        //col2.setCellFactory(ChoiceBoxTreeTableCell.forTreeTableColumn((list)));
+        tableView.setEditable(true);
+        tableView.setRoot(rootTable);
+        tableView.setShowRoot(false);
+    }
 
     public void mouseClick(MouseEvent mouseEvent){
-        if(mouseEvent.getClickCount()==2){
-            TreeItem<String> item = treeView.getSelectionModel().getSelectedItem();
-            //System.out.println(item.getValue());
-        }
-    }
-    public void commitClick(MouseEvent commitEvent){
-        if(commitEvent.getClickCount()==2){
-            System.out.println("Commit");
-            //System.out.println(item.getValue());
+            if(mouseEvent.getClickCount()==2){
+                TreeItem<String> item = treeView.getSelectionModel().getSelectedItem();
+                //System.out.println(item.getValue());
         }
     }
 
@@ -94,7 +92,6 @@ public class MainController implements Initializable{
         //TreeItem<String> item = treeView.getSelectionModel().getSelectedItem().parentProperty().toString();
         if (treeView.getSelectionModel().getSelectedItem().getParent().getValue().toString()=="Root"){
             System.out.println(treeView.getSelectionModel().getSelectedItem().getParent().getValue().toString());
-            Commit.setDisable(false);
 
 
         }
@@ -125,7 +122,7 @@ public class MainController implements Initializable{
     }
 
     @FXML
-    public void updateFunction(ActionEvent event) {
+    void updateFunction(ActionEvent event) {
         System.out.println("updateFunction");
     }
 
@@ -151,28 +148,6 @@ public class MainController implements Initializable{
             }root.getChildren().add(StoreN);
         }
         treeView.setRoot(root);
-    }
-
-    private void createTable(Start z){
-        this.createColumns(this.Insert(z.getStore(0).getDocs().find(0).getItem().getAttributeList()));
-    }
-    private List<String> Insert(SimpleList<Attribute> columnAttrib) {
-        List<String> columns = new ArrayList<String>();
-        int columnIndex = 0;
-        for (int i =0;i<columnAttrib.length();++i) {
-            columns.add(columnAttrib.find(i).getItem().getName());
-            //columnIndex = 0;
-        }
-        return columns;
-    }
-    private void createColumns(List<String> columns){
-        TableColumn[] tableColumns;
-        tableColumns = new TableColumn[columns.size()];
-        for (int n=0;n<columns.size();++n){
-            tableColumns[n]= new TableColumn(columns.get(n));
-        }
-        tableView.getColumns().addAll(tableColumns);
-        System.out.println("ok");
     }
 
 }
