@@ -1,5 +1,6 @@
 package Background.Documents;
 
+import Background.JsonObject.ObjectJ;
 import Background.JsonObject.ObjectJSON;
 import Background.LinkedList.SimpleList.SimpleList;
 import Background.Documents.Attribute;
@@ -7,7 +8,7 @@ import Background.Documents.Attribute;
 public class JsonDoc {
     private String name;
     private SimpleList<Attribute> attributeList;
-    private SimpleList<ObjectJSON> objectList;
+    private SimpleList<ObjectJ> objectList;
 
     public JsonDoc(String name){
         this.name=name;
@@ -15,7 +16,7 @@ public class JsonDoc {
         this.objectList=new SimpleList<>();
     }
 
-    public JsonDoc (String name, SimpleList<Attribute> attributeList, SimpleList<ObjectJSON> objectList){
+    public JsonDoc (String name, SimpleList<Attribute> attributeList, SimpleList<ObjectJ> objectList){
         this.name=name;
         this.attributeList=attributeList;
         this.objectList=objectList;
@@ -43,12 +44,11 @@ public class JsonDoc {
         attributeList.addLast(x);
     }*/
 
-    public void addObject(String attribute,Object PK, Object value){
-        ObjectJSON x = new ObjectJSON(attribute, PK,value);
-        /*for (int i=0;i<this.attributeList.length();++i){
-            ObjectJSON x = new ObjectJSON(this.getAttributte(i), PK,value);
-            this.objectList.addLast(x);
-        }*/
+    public void addObject(Object...value){
+        ObjectJ x = new ObjectJ(this.attributeList);
+        for(int i=0;i<value.length;++i){
+            x.createRow(this.attributeList.find(i).getItem().getName(),value[i]);
+        }
         this.objectList.addLast(x);
 
     }
@@ -58,7 +58,7 @@ public class JsonDoc {
         return z;
     }
 
-    public SimpleList<ObjectJSON> getObjectList() {
+    public SimpleList<ObjectJ> getObjectList() {
         return this.objectList;
     }
 
@@ -66,7 +66,7 @@ public class JsonDoc {
         this.attributeList = attributeList;
     }
 
-    public void setObjectList(SimpleList<ObjectJSON> objectList) {
+    public void setObjectList(SimpleList<ObjectJ> objectList) {
         this.objectList = objectList;
     }
 }

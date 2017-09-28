@@ -1,10 +1,10 @@
 package Background.JsonObject;
 
 public class Objeto {
-    String column;
-    Object value;
-    String type;
-    boolean key;
+    private String column;
+    private Object value;
+    private String type;
+    private boolean key;
     public Objeto(String column,String type, boolean key,Object value){
         this.column=column;
         this.type=type;

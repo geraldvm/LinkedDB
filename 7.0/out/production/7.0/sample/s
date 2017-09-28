@@ -1,20 +1,40 @@
- private List<String> Insert() {
-        List<String> columns = new ArrayList<String>();
-        List<String> rows = new ArrayList<String>();
-        int columnIndex = 0;
-        for (int i =0;i<6;i++) {
-            columns.add("col" + i);
-            //columnIndex = 0;
+CsvReader products = new CsvReader("C:\\Users\\admin\\Desktop\\Project\\shipforecast\\Data\\Recieve\\ShipId-1432530905282-1.csv");
+
+        products.readHeaders();
+
+                   String s[]=products.getHeaders();
+                   //int count=0;
+
+
+
+
+
+
+    col.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ObservableList,String>,ObservableValue<String>>(){                   
+       public ObservableValue<String> call(TableColumn.CellDataFeatures<ObservableList, String> param) {                                                                                             
+            return new SimpleStringProperty(param.getValue().get(j).toString());                       
+        }                   
+    });
+    tableView.getColumns().addAll(col);
+}
+while (products.readRecord())
+        {
+                     ObservableList<String> row = FXCollections.observableArrayList();    
+                    for(int x=0;x<s.length;x++)
+                    {
+
+                        int count=0;
+                    //System.out.println(s[x]);
+            String Valid = products.get(s[x]);
+                            row.addAll(Valid);
+
+
+
         }
-        return columns;
-    }
-    private void createColumns(List<String> columns){
-        TableColumn[] tableColumns;
-        tableColumns = new TableColumn[columns.size()];
-        for (int n=0;n<columns.size();++n){
-            tableColumns[n]= new TableColumn(columns.get(n));
-        }
-        tableView.getColumns().addAll(tableColumns);
-        System.out.println("ok");
-    }
-    col1.setCellValueFactory(param -> param.getValue().getValue().getNameProperty());
+
+                    tableView.getItems().add(row);
+                    }
+
+}   catch (Exception ex) {    
+       ex.printStackTrace();
+    }    

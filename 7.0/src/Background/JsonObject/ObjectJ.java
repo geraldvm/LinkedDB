@@ -5,10 +5,7 @@ import Background.LinkedList.SimpleList.SimpleList;
 
 public class ObjectJ {
     private SimpleList<Attribute> attributeList;
-    private Object value;
     private SimpleList<Objeto> row;
-    private boolean primaryKey;
-    private Attribute attribute;
 
     public ObjectJ(SimpleList<Attribute> attributeList, SimpleList<Objeto> row){
         this.attributeList=attributeList;
@@ -19,18 +16,6 @@ public class ObjectJ {
         this.attributeList=attributeList;
         this.row=new SimpleList<>();
     }
-
-
-    public void setObject(Attribute attribute, Object value){
-        if(isSameType(attribute,value)){
-            this.value=value;
-        }
-    }
-
-    public Object getValue() {
-        return this.value;
-    }
-
 
 
     private boolean isSameType(Attribute attribute,Object value){
@@ -48,8 +33,10 @@ public class ObjectJ {
     }
 
 
-    public void show(){
-        System.out.println(this.value);
+    public void showRowValue(){
+        for(int i=0;i<this.row.length();++i){
+            System.out.println(this.row.find(i).getItem().getValue());
+        }
     }
 
 
@@ -63,6 +50,30 @@ public class ObjectJ {
                         value[i]);
                 this.row.addLast(x);
             }
+            else {
+                Objeto x = new Objeto(this.attributeList.find(i).getItem().getName(),
+                        this.attributeList.find(i).getItem().getType(),
+                        this.attributeList.find(i).getItem().isPrimary(),
+                        this.attributeList.find(i).getItem().getValue());
+                this.row.addLast(x);
+            }
+        }
+    }
+    public void createRow (String attribute,Object value){
+
+        for (int i=0;i<this.attributeList.length();++i){
+            if (this.attributeList.find(i).getItem().getName()==attribute){
+                Attribute n = this.attributeList.find(i).getItem();
+                if(isSameType(n,value)){
+                    Objeto x = new Objeto(attribute,n.getType(), n.isPrimary(),value);
+                    this.row.addLast(x);
+                }
+                else{
+                    Objeto x = new Objeto(attribute,n.getType(), n.isPrimary(),n.getValue());
+                    this.row.addLast(x);
+                }
+            }
+
         }
     }
 

@@ -25,6 +25,7 @@ public class Attribute {
         this.key=compare(key);
         this.required=required;
         this.value=null;
+        this.primary=key;
         this.setValue(value);
     }
 
@@ -142,6 +143,8 @@ public class Attribute {
                 +this.key+ " Requerid: "+this.required+
                 " Type: "+this.type+ " value: "+this.value);
     }
+
+
 
 
 }
