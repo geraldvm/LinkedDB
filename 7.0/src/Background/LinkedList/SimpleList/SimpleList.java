@@ -8,6 +8,7 @@ public class SimpleList<T> {
     private Node<T> last;
     private int size=0;
 
+
     public SimpleList(){
         this.size=0;
     }
@@ -53,15 +54,15 @@ public class SimpleList<T> {
 
         if (this.isEmpty())
         {
-            last = newLast;
-            first = newLast;
+            this.last = newLast;
+            this.first = newLast;
             ++this.size;
         }
 
         else
         {
-            last.setNext(newLast);
-            last = newLast;
+            this.last.setNext(newLast);
+            this.last = newLast;
             ++this.size;
 
         }
@@ -174,6 +175,49 @@ public class SimpleList<T> {
             }
             return null;
         }
+    }
+    public T findItem(int pos)
+    {
+        return findI_aux(pos);
+    }
+
+    private T findI_aux(int pos)
+    {
+        Node<T> temp = this.first;
+        if(this.isEmpty())
+        {
+            return null;
+        }
+        else {
+            if (pos <= this.length())
+            {
+                for (int i=0; i<pos; i++)
+                {
+                    temp= temp.getNext();
+                }
+                return temp.getItem();
+
+            }
+            return null;
+        }
+    }
+
+    public void addFirst(T item){
+        Node<T> newFirst = new Node<>();
+        newFirst.setItem(item);
+        //newFirst.setNext(null);
+
+        if(this.isEmpty()){
+            this.first=newFirst;
+            this.last=newFirst;
+            ++this.size;
+        }
+        else {
+            newFirst.setNext(this.first);
+            this.first=newFirst;
+            ++this.size;
+        }
+
     }
 
 

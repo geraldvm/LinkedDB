@@ -34,8 +34,12 @@ public class ObjectJ {
 
 
     public void showRowValue(){
-        for(int i=0;i<this.row.length();++i){
-            System.out.println(this.row.find(i).getItem().getValue());
+        if (!this.row.isEmpty()) {
+            for (int i = 0; i < this.row.length(); ++i) {
+                System.out.println(this.row.find(i).getItem().getValue());
+            }
+        }else {
+            System.out.println("EMPTY");
         }
     }
 
@@ -63,7 +67,7 @@ public class ObjectJ {
 
         for (int i=0;i<this.attributeList.length();++i){
             if (this.attributeList.find(i).getItem().getName()==attribute){
-                Attribute n = this.attributeList.find(i).getItem();
+                Attribute n = this.attributeList.findItem(i);
                 if(isSameType(n,value)){
                     Objeto x = new Objeto(attribute,n.getType(), n.isPrimary(),value);
                     this.row.addLast(x);
@@ -74,6 +78,16 @@ public class ObjectJ {
                 }
             }
 
+        }
+    }
+    public void createRowFromJson (String attribute,Object value){
+
+        for (int i=0;i<this.attributeList.length();++i){
+            if (this.attributeList.findItem(i).getName().equals(attribute)){
+                Attribute n = this.attributeList.find(i).getItem();
+                Objeto x = new Objeto(attribute,n.getType(), n.isPrimary(),value);
+                this.row.addLast(x);
+            }
         }
     }
 

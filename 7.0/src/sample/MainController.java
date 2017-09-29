@@ -7,7 +7,9 @@ import Background.JsonObject.Objeto;
 import Background.JsonStore.Store;
 import Background.LinkedList.DoubleList.DoubleList;
 import Background.LinkedList.SimpleList.SimpleList;
+import Background.Load.LoadFile;
 import com.sun.org.apache.xpath.internal.SourceTree;
+import com.sun.webkit.ContextMenuItem;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -45,9 +47,12 @@ public class MainController implements Initializable{
     @FXML
     private TreeView<String> treeView;
     @FXML
-    private ContextMenu contMenu;
-    List<String> columns = new ArrayList<String>();
-    private Start z = new Start();
+    private MenuItem showT;
+
+
+
+
+    private Start init = new Start();
 
 
     Image folder = new Image(getClass().getResourceAsStream("/img/store.png"));
@@ -59,7 +64,7 @@ public class MainController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         //TreeItem<String> root = new TreeItem<>("Root");
         Commit.setDisable(true);
-
+        /*
         z.newStore("StoreA");
         z.newStore("StoreB");
         z.newStore("StoreC");
@@ -81,22 +86,38 @@ public class MainController implements Initializable{
         z.deleteStore("StoreB");
         z.deleteStore("StoreC");
         z.showStore();
-        */
-        createTree(z);
+*/
+
+        LoadFile Read = new LoadFile();
+        Read.loadStores();
+        this.init.setStoreList(Read.getStoreList());
+        createTree();
+
 
     }
 
 
     public void mouseClick(MouseEvent mouseEvent){
-        if(mouseEvent.getClickCount()==2){
+        if(mouseEvent.isPopupTrigger()) {
             TreeItem<String> item = treeView.getSelectionModel().getSelectedItem();
-            //System.out.println(item.getValue());
+            if(item.getParent().getValue().equals("Root")){
+                showT.setDisable(true);
+            }
+            else if (item.getParent().getParent().getValue().equals("Root")) {
+                showT.setDisable(false);
+            } else {
+                showT.setDisable(true);
+            }
         }
+
+
+
+
     }
     public void commitClick(MouseEvent commitEvent){
         if(commitEvent.getClickCount()==2){
             System.out.println("Commit");
-            SaveFiles commit= new SaveFiles(z.getStoreList());
+            SaveFiles commit= new SaveFiles(init.getStoreList());
             commit.createFile();
             Commit.setDisable(true);
         }
@@ -105,9 +126,9 @@ public class MainController implements Initializable{
     void newStoreFunction(ActionEvent event) {
         String store =SecondWindow.display("NewStore","Store");
         if (store!=null){
-            z.newStore(store);
+            init.newStore(store);
             Commit.setDisable(false);
-            createTree(z);
+            createTree();
         }
     }
 
@@ -118,15 +139,15 @@ public class MainController implements Initializable{
     }
     @FXML
     void deleteAllFunction(ActionEvent event) {
-        if(!z.getStoreList().isEmpty()) {
+        if(!init.getStoreList().isEmpty()) {
             if (treeView.getSelectionModel().getSelectedItem().getParent().getValue().toString() == "Root") {
-                z.deleteStore(treeView.getSelectionModel().getSelectedItem().getValue());
+                init.deleteStore(treeView.getSelectionModel().getSelectedItem().getValue());
                 Commit.setDisable(false);
             }else if (treeView.getSelectionModel().getSelectedItem().getParent().getParent().getValue() == "Root") {
-                z.getStore(treeView.getSelectionModel().getSelectedItem().getParent().getValue()).eraseDoc(treeView.getSelectionModel().getSelectedItem().getValue().toString());
+                init.getStore(treeView.getSelectionModel().getSelectedItem().getParent().getValue()).eraseDoc(treeView.getSelectionModel().getSelectedItem().getValue().toString());
                 Commit.setDisable(false);
             }
-        }this.createTree(z);
+        }this.createTree();
     }
 
     @FXML
@@ -146,49 +167,56 @@ public class MainController implements Initializable{
 
     @FXML
     void newObjectFunction(ActionEvent event) {
+
         System.out.println("newObjectFunction");
     }
+
 
 
 
     @FXML
     void searchFunction(ActionEvent event) {
         System.out.println("searchFunction");
+        eraseTB();
 
     }
+
 
     @FXML
     void showAllFunction(ActionEvent event) {
-        System.out.println("showAllFunction");
-        createTable(z);
+        TreeItem<String> item = treeView.getSelectionModel().getSelectedItem();
+        this.eraseTB();
+        tableView.refresh();
+        this.createTable(item.getParent().getValue(),item.getValue());
     }
+
 
     @FXML
     public void updateFunction(ActionEvent event) {
         System.out.println("updateFunction");
-        createTree(z);
+        createTree();
     }
 
 
 
-    private void createTree(Start z){
+    private void createTree(){
         TreeItem<String> root = new TreeItem<>("Root");
-        if (!z.getStoreList().isEmpty()) {
-            for (int i = 0; i < z.getAmountStore(); ++i) {
-                TreeItem<String> StoreN = new TreeItem<>(z.getStore(i).getStoreName(), new ImageView(folder));
-                if (!z.getStore(i).getDocs().isEmpty()) {
-                    for (int x = 0; x < z.getStore(i).getDocs().length(); ++x) {
-                        z.getStore(i).getDocs().find(x);
-                        TreeItem<String> docN = new TreeItem<>(z.getStore(i).getDocs().find(x).getItem().getName(), new ImageView(file));
+        if (!this.init.getStoreList().isEmpty()) {
+            for (int i = 0; i < this.init.getAmountStore(); ++i) {
+                TreeItem<String> StoreN = new TreeItem<>(this.init.getStore(i).getStoreName(), new ImageView(folder));
+                if (!this.init.getStore(i).getDocs().isEmpty()) {
+                    for (int x = 0; x < this.init.getStore(i).getDocs().length(); ++x) {
+                        this.init.getStore(i).getDocs().find(x);
+                        TreeItem<String> docN = new TreeItem<>(this.init.getStore(i).getDocs().findItem(x).getName(), new ImageView(file));
                         StoreN.getChildren().add(docN);
-                        if (!z.getStore(i).getDocs().find(x).getItem().getObjectList().isEmpty()) {
-                            for (int y = 0; y < z.getStore(i).getDocs().find(x).getItem().getObjectList().length(); ++y) {
-                                for (int n = 0; n < z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().length(); ++n) {
-                                    if (z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().isPrimary()) {
-                                        //System.out.println(z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getColumn()+"---"+z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().isPrimary()+"----"+z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getValue());
-                                        TreeItem<String> objectN = new TreeItem<>(z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getValue().toString(), new ImageView(object));
+                        if (!this.init.getStore(i).getDocs().findItem(x).getObjectList().isEmpty()) {
+                            for (int y = 0; y < this.init.getStore(i).getDocs().findItem(x).getObjectList().length(); ++y) {
+                                for (int n = 0; n <this.init.getStore(i).getDocs().findItem(x).getObjectList().findItem(y).getRow().length(); ++n) {
+                                    //System.out.println(this.init.getStore(i).getDocs().findItem(x).getObjectList().findItem(y).getRow().findItem(n).isPrimary());
+                                   if (this.init.getStore(i).getDocs().findItem(x).getObjectList().findItem(y).getRow().findItem(n).isPrimary()) {
+                                        TreeItem<String> objectN = new TreeItem<>(this.init.getStore(i).getDocs().findItem(x).getObjectList().findItem(y).getRow().findItem(n).getValue().toString(), new ImageView(object));
                                         docN.getChildren().add(objectN);
-                                    }
+                                   }
                                 }
 
                             }
@@ -200,12 +228,17 @@ public class MainController implements Initializable{
         }treeView.setRoot(root);
     }
 
-    private void createTable(Start z){
-        this.Insert(z.getStore(0).getDocs().find(0).getItem().getAttributeList(),z);
+    private void createTable(String storeName, String docName){
+        for(int i=0;i<this.init.getStore(storeName).getDocs().length();++i) {
+            if (this.init.getStore(storeName).getDocs().findItem(i).getName().equals(docName)) {
+                this.Insert(this.init.getStore(storeName).getDocs().findItem(i).getAttributeList(),
+                        this.init.getStore(storeName).getDocs().findItem(i).getObjectList());
+            }
+        }
     }
-    private void Insert(SimpleList<Attribute> columnAttrib, Start z) {
+    private void Insert(SimpleList<Attribute> columnAttrib, SimpleList<ObjectJ> objectList) {
 
-
+        List<String> columns = new ArrayList<String>();
         List<String> colAt = new ArrayList<String>();
 
         for (int i =0;i<columnAttrib.length();++i) {
@@ -223,17 +256,24 @@ public class MainController implements Initializable{
             });
             tableView.getColumns().addAll(col);
         }
-        addRows(z.getStore(0).getDocs().find(0).getItem().getObjectList().find(0).getItem().getRow(),columns.size());
+        for (int n=0;n<objectList.length();++n) {
+            addRows(objectList.find(n).getItem().getRow(), columns.size());
+        }
     }
     private void addRows(SimpleList<Objeto> objectRow, int columnSize){
         ObservableList<Object> row = FXCollections.observableArrayList();
         for(int x=0;x<columnSize;x++)
         {
 
-            //System.out.println(s[x]);
             Object Valid = objectRow.find(x).getItem().getValue();
             row.addAll(Valid);
         }tableView.getItems().add(row);
+    }
+
+    private void eraseTB(){
+        tableView.getItems().clear();
+        tableView.getColumns().clear();
+        tableView.refresh();
     }
 
 

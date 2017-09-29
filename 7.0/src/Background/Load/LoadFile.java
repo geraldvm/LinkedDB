@@ -8,7 +8,7 @@ import Background.LinkedList.DoubleList.DoubleList;
 import Background.LinkedList.CircularList.CircularList;
 import org.json.simple.JSONObject;
 import java.io.File;
-/*
+
 
 public class LoadFile {
 
@@ -29,39 +29,39 @@ public class LoadFile {
     public void loadStores(){
         loadStores_aux();
     }
-
-    /*public void loadDocs(){
+/*
+    public void loadDocs(){
         loadDocs_aux("StoreA");
     }*/
 
 
 
-   /* private void loadStores_aux()
+    private void loadStores_aux()
     {
-        File[] listF = exist("Linked");
+        File[] listF = exist("LINKED\\");
         for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
         {
             Store temp= new Store(listF[i].getName(),this.loadDocs(listF[i].getName()));
             this.storeList.addLast(temp);
-            System.out.println(temp.getStoreName());
+           //System.out.println(temp.getStoreName());
         }
         //this.storeList.show();
     }
     private CircularList<JsonDoc> loadDocs(String store)
     {
 
-        File[] listF = exist("Linked\\"+store);
+        File[] listF = exist("LINKED\\"+store+"\\");
         CircularList<JsonDoc> docList = new CircularList<>();
         for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
         {
-            //DEPURAR
+
             JsonDoc temp = new JsonDoc(listF[i].getName());
             JsonLoad readDoc = new JsonLoad(store,listF[i].getName());
-            temp.setAttributeList(readDoc.attributesREAD());
-            temp.setObjectList(readDoc.objectsREAD());
-            //AGREGAR LECTURA DE OBJETOS
+            temp.setAttributeList(readDoc.getAttributeList());
+            temp.setObjectList(readDoc.getObjectList());
+
             docList.addLast(temp);
-            System.out.println(temp.getName());
+
         }
         return docList;
     }
@@ -82,22 +82,9 @@ public class LoadFile {
         }
         return  null;
     }
-    private SimpleList loadAttributeList(String storeName,String docName){
-        SimpleList<Attribute> attriList = new SimpleList<>();
-        JsonLoad a = new JsonLoad(storeName,docName);
-        JSONObject x = a.read();
 
-        for (int i=0; i<x.keySet().toArray().length;++i){
-            JSONObject at = ((JSONObject) x.get(x.keySet().toArray()[i]));
-            Attribute newAttri = new Attribute(at.get("Name").toString(), ((int) at.get("Type")), ((boolean) at.get("Key")), ((boolean) at.get("Required")),at.get("Value"));
-            attriList.addLast(newAttri);
-        }
-        return attriList;
-
-    }
 
     public DoubleList getStoreList() {
         return this.storeList;
     }
 }
-*/

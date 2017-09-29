@@ -15,6 +15,7 @@ public class Start {
         return this.storeList;
     }
 
+
     public void setStoreList(DoubleList<Store> storeList) {
         this.storeList = storeList;
     }
@@ -25,12 +26,12 @@ public class Start {
     }
 
     public Store getStore(int i){
-        return this.storeList.find(i).getItem();
+        return this.storeList.findItem(i);
     }
     public Store getStore(String name){
         for (int i=0;i<this.storeList.length();i++){
-            if (this.storeList.find(i).getItem().getStoreName()==name){
-                return this.storeList.find(i).getItem();
+            if (this.storeList.findItem(i).getStoreName()==name){
+                return this.storeList.findItem(i);
             }
         }
         return null;
@@ -41,7 +42,7 @@ public class Start {
 
     public void deleteStore(String name){
         for (int i=0;i<this.storeList.length();++i){
-            if (this.storeList.find(i).getItem().getStoreName()==name){
+            if (this.storeList.findItem(i).getStoreName()==name){
                 this.storeList.deletePos(i);
             }
         }
@@ -50,7 +51,7 @@ public class Start {
     public void showStore(){
         if (!this.storeList.isEmpty()) {
             for (int i = 0; i < this.storeList.length(); ++i) {
-                System.out.println(this.storeList.find(i).getItem().getStoreName());
+                System.out.println(this.storeList.findItem(i).getStoreName());
             }
         }
     }

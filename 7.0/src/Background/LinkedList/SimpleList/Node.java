@@ -8,9 +8,9 @@ public class Node<T> {
         this.next= null;
         this.item=null;
     }
-    public Node(T item, Node<T> next){
+    public Node(T itemt){
         this.item=item;
-        this.next=next;
+        this.next=null;
     }
 
     public void setItem(T item) {

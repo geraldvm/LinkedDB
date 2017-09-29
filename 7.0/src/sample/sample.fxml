@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <children>
     <AnchorPane layoutX="64.0" layoutY="-65.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
@@ -31,6 +30,7 @@
                             <MenuItem mnemonicParsing="false" onAction="#newStoreFunction" text="New Store" />
                               <SeparatorMenuItem mnemonicParsing="false" />
                               <MenuItem mnemonicParsing="false" onAction="#newDocFunction" text="New Doc" />
+                              <MenuItem mnemonicParsing="false" onAction="#newObjectFunction" text="New Object" />
                               <Menu mnemonicParsing="false" text="Delete">
                                 <items>
                                     <MenuItem mnemonicParsing="false" onAction="#deleteAllFunction" text="Delete All" />
@@ -38,8 +38,7 @@
                                 </items>
                               </Menu>
                               <SeparatorMenuItem mnemonicParsing="false" />
-                              <MenuItem mnemonicParsing="false" onAction="#showAllFunction" text="Show all" />
-                              <MenuItem mnemonicParsing="false" onAction="#newObjectFunction" text="New Object" />
+                              <MenuItem fx:id="showT" mnemonicParsing="false" onAction="#showAllFunction" text="Show all" />
                               <MenuItem mnemonicParsing="false" onAction="#searchFunction" text="Search" />
                               <MenuItem mnemonicParsing="false" onAction="#updateFunction" text="Update" />
                           </items>

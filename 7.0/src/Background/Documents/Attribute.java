@@ -19,14 +19,23 @@ public class Attribute {
         this.required=required;
         this.value=null;
     }
-    public Attribute(String name, String type, boolean key,boolean required, Object value){
+   /* public Attribute(String name, String type, boolean key,boolean required, Object value){
         this.name=name;
         this.type=type;
         this.key=compare(key);
         this.required=required;
-        this.value=null;
         this.primary=key;
         this.setValue(value);
+    }*/
+    public Attribute(String name, String type, String key,boolean required, Object value){
+        this.name=name;
+        this.type=type;
+        this.key=key;
+        this.required=required;
+        this.value=value;
+        if(key.equals("Primary")){
+            this.primary=true;
+        }
     }
 
     public Attribute(String name, int type, boolean key,boolean required, Object value){
@@ -60,19 +69,19 @@ public class Attribute {
         return this.required;
     }
 
-    public void setAttribute(String name, String type, boolean key,boolean required){
+   /* public void setAttribute(String name, String type, boolean key,boolean required){
         this.name=name;
         this.type= type;
         this.key=compare(key);
         this.required = required;
-    }
+    }*/
 
     public boolean isPrimary() {
         return this.primary;
     }
 
     public void setValue(Object value){
-        if (!this.required&&isSameType(value)){
+        if ((!this.required)&&(isSameType(value))){
             this.value=value;
         }
 

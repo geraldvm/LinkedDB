@@ -162,6 +162,32 @@ public class DoubleList<T>{
         }
     }
 
+    public T findItem(int pos)
+    {
+        return findI_aux(pos);
+    }
+
+    private T findI_aux(int pos)
+    {
+        Node<T> temp = this.first;
+        if(this.isEmpty())
+        {
+            return null;
+        }
+        else {
+            if (pos <= this.length())
+            {
+                for (int i=0; i<pos; i++)
+                {
+                    temp= temp.getNext();
+                }
+                return temp.getItem();
+
+            }
+            return null;
+        }
+    }
+
 }
 
 

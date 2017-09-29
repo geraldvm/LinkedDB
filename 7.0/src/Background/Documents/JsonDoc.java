@@ -38,9 +38,14 @@ public class JsonDoc {
 
     }
     public void addAttribute(String name,int type, boolean key,boolean required,Object value){
-        Attribute x = new Attribute(name,type, key, required, value);
-
-        this.attributeList.addLast(x);
+        if(key) {
+            Attribute x = new Attribute(name, type, key, required, value);
+            this.attributeList.addFirst(x);
+        }
+        else {
+            Attribute x = new Attribute(name, type, key, required, value);
+            this.attributeList.addLast(x);
+        }
 
     }
     /*public void addAttribute(String name,int type, boolean key,boolean required,int year, int month, int day, int hour, int min){
