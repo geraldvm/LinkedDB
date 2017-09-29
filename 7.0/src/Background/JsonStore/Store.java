@@ -46,7 +46,28 @@ public class Store {
     public void addAtrribute(JsonDoc a,String name,int type, boolean key, boolean required){
         a.addAttribute(name,type,key,required);
     }
+    public JsonDoc getDoc(String name){
+        return this.getDoc_aux(name);
+    }
+    private JsonDoc getDoc_aux(String name){
+        for (int i=0;i<this.docs.length();i++){
+            if (this.docs.find(i).getItem().getName()==name){
+                return this.docs.find(i).getItem();
+            }
+        }
+        return null;
+    }
+    public void eraseDoc(String name){
+        this.eraseDoc_aux(name);
+    }
 
+    private void eraseDoc_aux(String name) {
+        for (int i=0;i<this.docs.length();++i){
+            if (this.docs.find(i).getItem().getName()==name){
+                this.docs.deletePos(i);
+            }
+        }
+    }
 
 
 }

@@ -131,5 +131,37 @@ public class DoubleList<T>{
         return false;
     }
 
+    public void deletePos(int pos) {
+        Node<T> temp = this.first;
+        if(!this.isEmpty()) {
+            if(this.size==1){
+                this.first=null;
+                this.last=this.first;
+            }
+            else if(pos==0){
+                temp.getNext().setPrevious(null);
+                this.first=temp.getNext();
+                //this.first.setPrevious(null);
+                this.size--;
+            }
+            else if(!this.isEmpty()) {
+
+                for (int i = 0; i < pos; ++i) {
+                    temp = temp.getNext();
+                }
+                if(pos==this.size-1) {
+                    temp.getPrevious().setNext(null);
+                    this.last=temp.getPrevious();
+                    this.size--;
+                }else {
+                    temp.getPrevious().setNext(temp.getNext());
+                    temp.getNext().setPrevious(temp.getPrevious());
+                    this.size--;
+                }
+            }
+        }
+    }
 
 }
+
+

@@ -27,7 +27,31 @@ public class Start {
     public Store getStore(int i){
         return this.storeList.find(i).getItem();
     }
+    public Store getStore(String name){
+        for (int i=0;i<this.storeList.length();i++){
+            if (this.storeList.find(i).getItem().getStoreName()==name){
+                return this.storeList.find(i).getItem();
+            }
+        }
+        return null;
+    }
     public int getAmountStore(){
         return this.storeList.length();
+    }
+
+    public void deleteStore(String name){
+        for (int i=0;i<this.storeList.length();++i){
+            if (this.storeList.find(i).getItem().getStoreName()==name){
+                this.storeList.deletePos(i);
+            }
+        }
+        //this.storeList.deletePos(pos);
+    }
+    public void showStore(){
+        if (!this.storeList.isEmpty()) {
+            for (int i = 0; i < this.storeList.length(); ++i) {
+                System.out.println(this.storeList.find(i).getItem().getStoreName());
+            }
+        }
     }
 }

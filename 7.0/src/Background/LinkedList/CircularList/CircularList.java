@@ -116,5 +116,41 @@ public class CircularList<T> {
             return null;
         }
     }
+    public void deletePos(int pos) {
+        deletePos_aux(pos);
+    }
+
+    private void deletePos_aux(int pos) {
+        Node<T> temp = this.first;
+        if(!this.isEmpty()) {
+            if (this.size == 1) {
+                this.first = null;
+                this.last = this.first;
+            } else if (pos == 0) {
+                temp.getNext().setPrevious(this.last);
+                this.last.setNext(temp.getNext());
+                this.first = temp.getNext();
+                this.size--;
+            }
+            else if (pos == 0&&this.length()==1) {
+                this.last=null;
+                this.first=null;
+                this.size--;
+            }
+        }else if(!this.isEmpty()){
+            for (int i = 0; i < pos; ++i) {
+                temp = temp.getNext();
+            }
+            if(pos==this.size-1) {
+                temp.getPrevious().setNext(this.first);
+                this.last=temp.getPrevious();
+                this.size--;
+            }else {
+                temp.getPrevious().setNext(temp.getNext());
+                temp.getNext().setPrevious(temp.getPrevious());
+                this.size--;
+            }
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package sample;
 
+import Background.Commit.SaveFiles;
 import Background.Documents.Attribute;
 import Background.JsonObject.ObjectJ;
 import Background.JsonObject.Objeto;
@@ -53,14 +54,6 @@ public class MainController implements Initializable{
     Image file = new Image(getClass().getResourceAsStream("/img/a.png"));
     Image object = new Image(getClass().getResourceAsStream("/img/object.png"));
 
-    ObservableList<Table> data = FXCollections.observableArrayList(
-            new Table(12258,"Carlos",25),
-            new Table(18,"Juan",25),
-            new Table(12258,"Pablo",26));
-
-
-    //-----------------Table----------------------
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -81,6 +74,14 @@ public class MainController implements Initializable{
         z.getStore(0).getDocs().find(0).getItem().addObject("H","juan",35);
         //System.out.println(z.getStore(0).getDocs().find(0).getItem().getObjectList().find(0).getItem().getRow().);
         //SimpleList<Attribute> colAtrib = z.getStore(0).getDocs().find(0).getItem().getAttributeList();
+
+        /*z.showStore();
+        System.out.println("**********");
+        z.deleteStore("StoreA");
+        z.deleteStore("StoreB");
+        z.deleteStore("StoreC");
+        z.showStore();
+        */
         createTree(z);
 
     }
@@ -95,17 +96,37 @@ public class MainController implements Initializable{
     public void commitClick(MouseEvent commitEvent){
         if(commitEvent.getClickCount()==2){
             System.out.println("Commit");
-            //System.out.println(item.getValue());
+            SaveFiles commit= new SaveFiles(z.getStoreList());
+            commit.createFile();
+            Commit.setDisable(true);
+        }
+    }
+    @FXML
+    void newStoreFunction(ActionEvent event) {
+        String store =SecondWindow.display("NewStore","Store");
+        if (store!=null){
+            z.newStore(store);
+            Commit.setDisable(false);
+            createTree(z);
         }
     }
 
     @FXML
     void deleteFunction(ActionEvent event) {
         System.out.println("deleteF");
+
     }
     @FXML
     void deleteAllFunction(ActionEvent event) {
-        System.out.println("deleteALL");
+        if(!z.getStoreList().isEmpty()) {
+            if (treeView.getSelectionModel().getSelectedItem().getParent().getValue().toString() == "Root") {
+                z.deleteStore(treeView.getSelectionModel().getSelectedItem().getValue());
+                Commit.setDisable(false);
+            }else if (treeView.getSelectionModel().getSelectedItem().getParent().getParent().getValue() == "Root") {
+                z.getStore(treeView.getSelectionModel().getSelectedItem().getParent().getValue()).eraseDoc(treeView.getSelectionModel().getSelectedItem().getValue().toString());
+                Commit.setDisable(false);
+            }
+        }this.createTree(z);
     }
 
     @FXML
@@ -114,6 +135,7 @@ public class MainController implements Initializable{
         if (treeView.getSelectionModel().getSelectedItem().getParent().getValue().toString()=="Root"){
             System.out.println(treeView.getSelectionModel().getSelectedItem().getParent().getValue().toString());
             Commit.setDisable(false);
+
 
 
         }
@@ -127,21 +149,7 @@ public class MainController implements Initializable{
         System.out.println("newObjectFunction");
     }
 
-    @FXML
-    void newStoreFunction(ActionEvent event) {
-        System.out.println("newStoreFunction");
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("NewStoreWin.fxml"));
-            Parent rootStore = ((Parent) fxmlLoader.load());
-            Stage stageStore = new Stage();
-            //stageStore.initStyle(StageStyle.UNIFIED);
-            stageStore.setTitle("New Store");
-            stageStore.setScene(new Scene(rootStore));
-            stageStore.show();
-        }catch (Exception e){
-            System.out.println("Can't Load window");
-        }
-    }
+
 
     @FXML
     void searchFunction(ActionEvent event) {
@@ -158,35 +166,38 @@ public class MainController implements Initializable{
     @FXML
     public void updateFunction(ActionEvent event) {
         System.out.println("updateFunction");
+        createTree(z);
     }
 
 
 
     private void createTree(Start z){
         TreeItem<String> root = new TreeItem<>("Root");
-        for (int i=0;i<z.getAmountStore();++i){
-            TreeItem<String> StoreN = new TreeItem<>(z.getStore(i).getStoreName(),new ImageView(folder));
-            if(z.getStore(i).getDocs().length()>0){
-                for(int x=0;x<z.getStore(i).getDocs().length();++x){
-                    z.getStore(i).getDocs().find(x);
-                    TreeItem<String> docN = new TreeItem<>(z.getStore(i).getDocs().find(x).getItem().getName(),new ImageView(file));
-                    StoreN.getChildren().add(docN);
-                    if(z.getStore(i).getDocs().find(x).getItem().getObjectList().length()>0){
-                        for(int y=0; y<z.getStore(i).getDocs().find(x).getItem().getObjectList().length();++y){
-                            for(int n=0;n<z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().length();++n){
-                                if(z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().isPrimary()){
-                                    //System.out.println(z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getColumn()+"---"+z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().isPrimary()+"----"+z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getValue());
-                                    TreeItem<String> objectN = new TreeItem<>(z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getValue().toString(),new ImageView(object));
-                                    docN.getChildren().add(objectN);
+        if (!z.getStoreList().isEmpty()) {
+            for (int i = 0; i < z.getAmountStore(); ++i) {
+                TreeItem<String> StoreN = new TreeItem<>(z.getStore(i).getStoreName(), new ImageView(folder));
+                if (!z.getStore(i).getDocs().isEmpty()) {
+                    for (int x = 0; x < z.getStore(i).getDocs().length(); ++x) {
+                        z.getStore(i).getDocs().find(x);
+                        TreeItem<String> docN = new TreeItem<>(z.getStore(i).getDocs().find(x).getItem().getName(), new ImageView(file));
+                        StoreN.getChildren().add(docN);
+                        if (!z.getStore(i).getDocs().find(x).getItem().getObjectList().isEmpty()) {
+                            for (int y = 0; y < z.getStore(i).getDocs().find(x).getItem().getObjectList().length(); ++y) {
+                                for (int n = 0; n < z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().length(); ++n) {
+                                    if (z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().isPrimary()) {
+                                        //System.out.println(z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getColumn()+"---"+z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().isPrimary()+"----"+z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getValue());
+                                        TreeItem<String> objectN = new TreeItem<>(z.getStore(i).getDocs().find(x).getItem().getObjectList().find(y).getItem().getRow().find(n).getItem().getValue().toString(), new ImageView(object));
+                                        docN.getChildren().add(objectN);
+                                    }
                                 }
-                            }
 
+                            }
                         }
                     }
                 }
-            }root.getChildren().add(StoreN);
-        }
-        treeView.setRoot(root);
+                root.getChildren().add(StoreN);
+            }
+        }treeView.setRoot(root);
     }
 
     private void createTable(Start z){

@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="200.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.NewStoreController">
    <children>
       <VBox layoutX="37.0" prefHeight="200.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -24,14 +23,14 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="input">
+                  <TextField fx:id="input" promptText="jkk">
                      <HBox.margin>
                         <Insets left="50.0" top="30.0" />
                      </HBox.margin>
                   </TextField>
                </children>
             </HBox>
-            <Button fx:id="createJ" mnemonicParsing="false" onMouseClicked="#create" style="-fx-background-color: #27a549;" text="Create" textFill="#fffafa">
+            <Button fx:id="controlJ" mnemonicParsing="false" onAction="#initialize" onMouseClicked="#create" style="-fx-background-color: #27a549;" text="Create" textFill="#fffafa">
                <VBox.margin>
                   <Insets left="95.0" />
                </VBox.margin>

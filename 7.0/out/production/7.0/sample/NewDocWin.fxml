@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.NewDocController"
+            prefHeight="260.0" prefWidth="260.0">
+    <children>
+        <VBox layoutX="37.0" prefHeight="200.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label prefHeight="64.0" prefWidth="260.0" text="New Document">
+                    <font>
+                        <Font name="Berlin Sans FB" size="24.0" />
+                    </font>
+                    <padding>
+                        <Insets left="75.0" />
+                    </padding>
+                </Label>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="input">
+                            <HBox.margin>
+                                <Insets left="50.0" top="30.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                <Button fx:id="createBtn" mnemonicParsing="false" onMouseClicked="#create" style="-fx-background-color: #27a549;" text="Create" textFill="#fffafa">
+                    <VBox.margin>
+                        <Insets left="95.0" />
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+
+</AnchorPane>

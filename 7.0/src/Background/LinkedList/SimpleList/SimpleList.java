@@ -31,6 +31,19 @@ public class SimpleList<T> {
             temp = temp.getNext();
         }
     }
+    /*public void addFirst(T item) {
+        Node newFirst = new Node();
+        newFirst.setItem(item);
+        if (this.first == null)
+        {
+            this.first = newFirst;
+        }
+        else
+        {
+            newFirst.setNext(this.first);
+            this.first = newFirst;
+        }
+    }*/
 
     public void addLast(T item)
     {
@@ -54,7 +67,7 @@ public class SimpleList<T> {
         }
     }
 
-    public void erase(Object item)
+    public void delete(T item)
     {
         Node<T> temp;
         temp=this.first;

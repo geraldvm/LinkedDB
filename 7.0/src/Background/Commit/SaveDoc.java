@@ -1,6 +1,7 @@
 package Background.Commit;
 import java.io.*;
 import Background.Documents.Attribute;
+import Background.JsonObject.ObjectJ;
 import Background.JsonObject.ObjectJSON;
 import Background.LinkedList.SimpleList.SimpleList;
 import org.json.simple.JSONObject;
@@ -9,11 +10,11 @@ public class SaveDoc {
     private String documentName;
     private String storeName;
     private SimpleList<Attribute> attribute;
-    private SimpleList<ObjectJSON> obj;
+    private SimpleList<ObjectJ> obj;
     private JSONObject jsonFile;
+    private Object key;
 
-
-    public SaveDoc(String nameStore, String nameDoc, SimpleList<Attribute> attribute,SimpleList<ObjectJSON> obj){
+    public SaveDoc(String nameStore, String nameDoc, SimpleList<Attribute> attribute,SimpleList<ObjectJ> obj){
         this.storeName=nameStore;
         this.documentName=nameDoc;
         this.attribute=attribute;
@@ -31,14 +32,21 @@ public class SaveDoc {
         //String name, int type, boolean key,boolean required, Object value
         JSONObject objList = new JSONObject();
         if(!this.obj.isEmpty()){
+            JSONObject row = new JSONObject();
             for(int i=0;i<this.obj.length();++i){
                 JSONObject objJson = new JSONObject();
-                ObjectJSON temp = this.obj.find(i).getItem();
-                objJson.put("Value",temp.getValue());
-                objJson.put("Attribute",temp.getNameAttribute());
-                objList.put(((Integer) i),objJson);
+                ObjectJ temp = this.obj.find(i).getItem();
+
+                for (int x=0;x<temp.getRow().length();++x) {
+                    objJson.put(temp.getRow().find(x).getItem().getColumn(),
+                                temp.getRow().find(x).getItem().getValue());//Atrinuto valor
+                    if(temp.getRow().find(x).getItem().isPrimary()) {
+                        this.key=temp.getRow().find(x).getItem().getValue();
+                    }
+                    row.put(i,objJson);
+                }//objList.put()
             }
-            this.jsonFile.put("ObjectList",objList);
+            this.jsonFile.put("ObjectList",row);
         }
     }
 
@@ -63,7 +71,9 @@ public class SaveDoc {
     public void show(){
         System.out.println(this.jsonFile);
     }
-    public void createFile() {
+    public void createJSONFile() {
+        this.addAttribute();
+        this.addObject();
         try {
 
             FileWriter file = new FileWriter("C:\\Users\\geral\\Desktop\\LINKED\\"+this.storeName+"\\"+this.documentName+".json");
