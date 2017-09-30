@@ -1,9 +1,16 @@
 package Background.Documents;
 
-import java.time.LocalDateTime;
 
+/**
+ * Clase Atributo
+ * Cada una de las Columnas de las tablas de LinkedDB
+ * @author Gerald Valverde Mc kenzie
+ * @version  3.0
+ */
 public class Attribute {
-
+    /**
+     * Atributos
+     */
     private String name;
     private String key;
     private boolean primary;
@@ -11,6 +18,13 @@ public class Attribute {
     private Object value;
     private String type;
 
+    /**
+     * Constructor
+     * @param name : nombre del atributp
+     * @param type : Tipo de dato
+     * @param key   :(Primary=true)
+     * @param required: valor requerido
+     */
     public Attribute(String name, int type, boolean key,boolean required){
         this.name=name;
         this.type=type_aux(type);
@@ -19,14 +33,15 @@ public class Attribute {
         this.required=required;
         this.value=null;
     }
-   /* public Attribute(String name, String type, boolean key,boolean required, Object value){
-        this.name=name;
-        this.type=type;
-        this.key=compare(key);
-        this.required=required;
-        this.primary=key;
-        this.setValue(value);
-    }*/
+
+    /**
+     * Constructor
+     * @param name : nombre del atributp
+     * @param type : Tipo de dato (STRING)
+     * @param key   : Primary or Foreign
+     * @param required: valor requerido
+     * @param value: valor por defecto
+     */
     public Attribute(String name, String type, String key,boolean required, Object value){
         this.name=name;
         this.type=type;
@@ -38,48 +53,71 @@ public class Attribute {
         }
     }
 
+    /**
+     * Constructor
+     * @param name : nombre del atributp
+     * @param type : Tipo de dato
+     * @param key   :(Primary=true)
+     * @param required: valor requerido
+     * @param value : valor por defecto
+     */
     public Attribute(String name, int type, boolean key,boolean required, Object value){
         this(name,type,key,required);
         this.setValue(value);
     }
-    /*public Attribute(String name, int type, boolean key,boolean required,int year, int month, int day, int hour, int min ){
-        this(name, type, key, required);
-        if (!isRequired()&&this.type=="date"){
-            setValue(year, month, day, hour, min);
-        }
-    }*/
 
+    /**
+     * Getter
+     * @return tipo de dato
+     */
     public String getType() {
         return this.type;
     }
 
+    /**
+     * Getter
+     * @return valor por defecto
+     */
     public Object getValue() {
         return this.value;
     }
 
+    /**
+     * Getter
+     * @return nombre del atributo
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Getter
+     * @return Primary or Foreign
+     */
     public String getKey() {
         return this.key;
     }
 
+    /**
+     * Boolean
+     * @return si es requerido
+     */
     public boolean isRequired() {
         return this.required;
     }
 
-   /* public void setAttribute(String name, String type, boolean key,boolean required){
-        this.name=name;
-        this.type= type;
-        this.key=compare(key);
-        this.required = required;
-    }*/
-
+    /**
+     * Boolean
+     * @return Primary=true
+     */
     public boolean isPrimary() {
         return this.primary;
     }
 
+    /**
+     * Actualizar el valor por defecto
+     * @param value: nuevo valor
+     */
     public void setValue(Object value){
         if ((!this.required)&&(isSameType(value))){
             this.value=value;
@@ -90,11 +128,12 @@ public class Attribute {
             System.out.println("ERROR");
         }
     }
-    /*private void setValue(int year, int month, int day, int hour, int min){
-        LocalDateTime date = LocalDateTime.of(year, month, day, hour, min);
-        this.value=date;
-    }*/
 
+    /**
+     * Boolean to String
+     * @param key
+     * @return String
+     */
     private String compare(boolean key){
         if (key==true){
             return  "Primary";
@@ -104,6 +143,11 @@ public class Attribute {
         }
     }
 
+    /**
+     * Casos de int to String
+     * @param x
+     * @return Strring
+     */
     private String type_aux (int x){
         String type = "";
         switch (x){
@@ -123,7 +167,11 @@ public class Attribute {
         return type;
     }
 
-
+    /**
+     * Compara que el valor sea igual al tipo
+     * @param value
+     * @return true si son igual
+     */
     private boolean isSameType(Object value){
         String x = value.getClass().getSimpleName();
 
@@ -147,6 +195,9 @@ public class Attribute {
 
     }
 
+    /**
+     * Mostrar valores
+     */
     public void show(){
         System.out.println("name: "+this.name+" Key: "
                 +this.key+ " Requerid: "+this.required+

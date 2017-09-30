@@ -2,11 +2,19 @@ package Background.Commit;
 import java.io.*;
 import Background.Documents.Attribute;
 import Background.JsonObject.ObjectJ;
-import Background.JsonObject.ObjectJSON;
 import Background.LinkedList.SimpleList.SimpleList;
 import org.json.simple.JSONObject;
 
+/**
+ * Clase SaveDoc
+ * Guarda los documentos en memoria fisica
+ * @author Gerald Valverde Mc kenzie
+ * @version 7.0
+ */
 public class SaveDoc {
+    /**
+     * Atributos
+     */
     private String documentName;
     private String storeName;
     private SimpleList<Attribute> attribute;
@@ -14,6 +22,13 @@ public class SaveDoc {
     private JSONObject jsonFile;
     private Object key;
 
+    /**
+     * Constructor
+     * @param nameStore: Nombre del Store
+     * @param nameDoc : nombre del documento
+     * @param attribute : Lista de atributos
+     * @param obj :lista de Objetos
+     */
     public SaveDoc(String nameStore, String nameDoc, SimpleList<Attribute> attribute,SimpleList<ObjectJ> obj){
         this.storeName=nameStore;
         this.documentName=nameDoc;
@@ -22,14 +37,38 @@ public class SaveDoc {
         this.jsonFile= new JSONObject();
 
     }
+    /**
+     * Imprime el JSONObject creado
+     */
+    public void show(){
+        System.out.println(this.jsonFile);
+    }
+
+    /**
+     * Guarda en una ruta el documento
+     */
+    public void createJSONFile(){
+        this.createJSONFile_aux();
+    }
+
+    /**
+     * Agregar Objetos
+     * Crea el JSONObject
+     */
     public void addObject(){
         if (this.obj!=null){
             addObject_aux();
         }
     }
 
+    /**
+     * Crea el JSONObject de atributos
+     */
+    public void addAttribute(){
+        this.addAttribute_aux();
+    }
+
     private void addObject_aux(){
-        //String name, int type, boolean key,boolean required, Object value
         JSONObject objList = new JSONObject();
         if(!this.obj.isEmpty()){
             JSONObject row = new JSONObject();
@@ -39,19 +78,19 @@ public class SaveDoc {
 
                 for (int x=0;x<temp.getRow().length();++x) {
                     objJson.put(temp.getRow().find(x).getItem().getColumn(),
-                                temp.getRow().find(x).getItem().getValue());//Atrinuto valor
+                                temp.getRow().find(x).getItem().getValue());
                     if(temp.getRow().find(x).getItem().isPrimary()) {
                         this.key=temp.getRow().find(x).getItem().getValue();
                     }
                     row.put(i,objJson);
-                }//objList.put()
+                }
             }
             this.jsonFile.put("ObjectList",row);
         }
     }
 
-    public void addAttribute(){
-        //String name, int type, boolean key,boolean required, Object value
+
+    private void addAttribute_aux(){
         JSONObject attribList = new JSONObject();
         if(!this.attribute.isEmpty()){
             for(int i=0;i<this.attribute.length();++i){
@@ -68,22 +107,18 @@ public class SaveDoc {
         }
 
     }
-    public void show(){
-        System.out.println(this.jsonFile);
-    }
-    public void createJSONFile() {
+
+
+    public void createJSONFile_aux() {
         this.addAttribute();
         this.addObject();
         try {
-
             FileWriter file = new FileWriter("C:\\Users\\geral\\Desktop\\LINKED\\"+this.storeName+"\\"+this.documentName+".json");
             file.write(this.jsonFile.toJSONString());
             file.flush();
             file.close();
         }
-
         catch(IOException e){
-            //manejar error
         }
     }
 

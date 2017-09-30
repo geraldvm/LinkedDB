@@ -1,74 +1,85 @@
 package Background.Load;
-
-import Background.Documents.Attribute;
 import Background.Documents.JsonDoc;
 import Background.JsonStore.Store;
-import Background.LinkedList.SimpleList.SimpleList;
 import Background.LinkedList.DoubleList.DoubleList;
 import Background.LinkedList.CircularList.CircularList;
-import org.json.simple.JSONObject;
 import java.io.File;
 
-
+/**
+ * Clase LoadFile
+ * Busca los ficheros en memora=ia de una ruta
+ * Carga los ficheros en listas
+ * @author Gerald Valverde Mc kenzie
+ * @version 7.0
+ */
 public class LoadFile {
-
-    //private JSONParser file;
-    //private String path;
+    /**
+     * Atributo
+     * Lista Doblemente enlazada de Stores
+     */
     private DoubleList<Store> storeList;
-    //private CircularList<JsonDoc> docList;
 
+    /**
+     * Constructor inicializa la lista
+     */
     public LoadFile(){
-       // this.file = new JSONParser();
         this.storeList = new DoubleList<>();
-        //this.docList = new CircularList<>();
-
-
     }
 
-    //http://lineadecodigo.com/java/listar-un-directorio-con-java/
+    /**
+     * Getter
+     * @return Lista doblemente enlazada con datos de tipo Store
+     */
+    public DoubleList getStoreList() {
+        return this.storeList;
+    }
+
+    /**
+     * Metodo encargado de buscar en el directorio los store creados
+     */
     public void loadStores(){
-        loadStores_aux();
+        this.loadStores_aux();
     }
-/*
-    public void loadDocs(){
-        loadDocs_aux("StoreA");
-    }*/
 
-
-
-    private void loadStores_aux()
+    /**
+     * Metodo que comprueba si un directorio existe en la ruta
+     * @param directory ruta
+     * @return array con los directorios en la ruta
+     */
+    public File[] exist(String directory)
     {
-        File[] listF = exist("LINKED\\");
-        for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
-        {
-            Store temp= new Store(listF[i].getName(),this.loadDocs(listF[i].getName()));
-            this.storeList.addLast(temp);
-           //System.out.println(temp.getStoreName());
-        }
-        //this.storeList.show();
+        return this.exist_aux(directory);
     }
+
+    /**
+     * Metodo que lee los documentos dentro de cada Store
+     * @param store Store en el que va buscar
+     * @return lista Circular con datos de tipo Store
+     */
     private CircularList<JsonDoc> loadDocs(String store)
     {
-
         File[] listF = exist("LINKED\\"+store+"\\");
         CircularList<JsonDoc> docList = new CircularList<>();
-        for (int i=0; i<listF.length;i++) // Recorre el arreglo y lo mente eb una lista enlazada
+        for (int i=0; i<listF.length;i++)
         {
-
             JsonDoc temp = new JsonDoc(listF[i].getName());
             JsonLoad readDoc = new JsonLoad(store,listF[i].getName());
             temp.setAttributeList(readDoc.getAttributeList());
             temp.setObjectList(readDoc.getObjectList());
 
             docList.addLast(temp);
-
         }
         return docList;
     }
 
-    public File[] exist(String directory)
+    private void loadStores_aux()
     {
-        return exist_aux(directory);
+        File[] listF = exist("LINKED\\");
+        for (int i=0; i<listF.length;i++)
+        {
+            Store temp= new Store(listF[i].getName(),this.loadDocs(listF[i].getName()));
+            this.storeList.addLast(temp);
+        }
     }
 
     private File[] exist_aux(String directory)
@@ -84,7 +95,5 @@ public class LoadFile {
     }
 
 
-    public DoubleList getStoreList() {
-        return this.storeList;
-    }
+
 }

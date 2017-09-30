@@ -3,14 +3,35 @@ import java.io.File;
 import Background.JsonStore.Store;
 import Background.LinkedList.DoubleList.DoubleList;
 
+/**
+ * Clase SaveFiles
+ * Guarda los Stores en memoria fisica
+ * @author Gerald Valverde Mc kenzie
+ * version 7.0
+ */
 public class SaveFiles {
+    /**
+     * Atributos
+     * Lista Doble de Store
+     * Ruta de archivos
+     */
     private DoubleList<Store> storeList;
     private String path;
 
+    /**
+     * Constructor
+     * @param storeList: Recibe la lista de Store
+     * Determina la ruta por defecto
+     */
     public SaveFiles(DoubleList<Store> storeList){
         this.storeList=storeList;
         this.path="C:\\Users\\geral\\Desktop\\LINKED\\";
     }
+
+    /**
+     * Metodo encargado de crear las carpetas
+     * o eliminarlas
+     */
     public void createFile(){
         if (!this.storeList.isEmpty()) {
             for (int i = 0; i < this.storeList.length(); ++i) {
@@ -19,10 +40,11 @@ public class SaveFiles {
         }
         this.deleteFile();
     }
+
+
     private void createFile_aux(Store store)
     {
-        //String path = System.getProperty("user.dir")+"\\STORES\\"+directory; //Directorio
-        File newStore = new File(path+store.getStoreName());  //Crea el objeto
+        File newStore = new File(path+store.getStoreName());
         newStore.mkdirs();
         for (int i=0;i<store.getDocs().length();++i){
             SaveDoc json = new SaveDoc(store.getStoreName(),
@@ -54,6 +76,12 @@ public class SaveFiles {
         }
 
     }
+
+    /**
+     * Boolean
+     * @param file String
+     * @return si existe la carpeta en el store
+     */
     private boolean contains(String file){
         if (!this.storeList.isEmpty()) {
             for (int i = 0; i < this.storeList.length(); ++i) {

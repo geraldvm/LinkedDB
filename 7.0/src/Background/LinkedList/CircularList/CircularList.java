@@ -1,12 +1,23 @@
 package Background.LinkedList.CircularList;
 import Background.LinkedList.DoubleList.Node;
 
+/**
+ * Clase CircularList
+ * Es una lista circular Doblemente enlazada de datos genéricos
+ * @author Gerald Valverde Mc kenzie
+ * @version 7.0
+ * @param <T> : dato de tipo Generics
+ */
 public class CircularList<T> {
 
     private Node<T> first ;
     private Node<T> last;
     private int size;
 
+    /**
+     * Constructor
+     * Iniciliza los atributos
+     */
     public CircularList()
     {
         this.first=null;
@@ -14,87 +25,49 @@ public class CircularList<T> {
         this.size=0;
     }
 
+    /**
+     * Método length
+     * @return tamaño de la lista
+     */
     public int length() {
         return this.size;
     }
 
+    /**
+     * Metodo booleano
+     * @return si la lista esta vacia
+     */
     public boolean isEmpty(){
         return this.first==null;
     }
 
-
-
-    public void addLast(T item)
-    {
-        if (first == null)
-        {
-            last = new Node();
-            last.setItem(item);
-            last.setNext(last);
-            last.setPrevious(last);
-            first = last;
-            ++this.size;
-        }
-        else
-        {
-            Node<T> newLast = new Node();
-            newLast.setItem(item);
-            newLast.setPrevious(last);
-            newLast.setNext(first);
-            last.setNext(newLast);
-            first.setPrevious(newLast);
-            last = newLast;
-            ++this.size;
-        }
-    }
-    public void eraseLast()
-    {
-        Node<T> temp = new Node();
-        temp = last.getPrevious().getPrevious();
-        last = last.getPrevious();
-        last.setPrevious(temp);
-        last.setNext(first);
-
-    }
-    public void show()
-    {
-        Node<T> temp = first;
-
-        while (temp.getNext() != first)
-        {
-            System.out.println(temp.getItem());
-            temp = temp.getNext();
-        }
-        System.out.println(temp.getItem());
+    /**
+     * Metodo encargado de agregar al final de la lista un dato
+     * @param item dato a insertar de tipo T
+     */
+    public void addLast(T item){
+        this.addLast_aux(item);
     }
 
-
-    public Boolean search(Object item)
-    {
-        Node<T> temp = first;
-        while (temp.getNext() != first)
-        {
-            if (temp.getItem()==item)
-            {
-                return true;
-            }
-            temp =temp.getNext();
-        }
-        if (temp.getItem()==item)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
-    }
-
+    /**
+     * Metodo encargado de buscar un nodo segun su posicion
+     * @param pos : < this.length
+     * @return nodo en la pos
+     */
     public Node<T> find(int pos)
     {
-        return find_aux(pos);
+        return this.find_aux(pos);
     }
+
+    /**
+     * Elimina un nodo por su posicion
+     * @param pos posicion a eliminar
+     */
+    public void deletePos(int pos) {
+        this.deletePos_aux(pos);
+    }
+
+    //Metodos privados
 
     private Node<T> find_aux(int pos)
     {
@@ -115,9 +88,6 @@ public class CircularList<T> {
             }
             return null;
         }
-    }
-    public void deletePos(int pos) {
-        deletePos_aux(pos);
     }
 
     private void deletePos_aux(int pos) {
@@ -152,6 +122,7 @@ public class CircularList<T> {
             }
         }
     }
+
     public T findItem(int pos)
     {
         return findI_aux(pos);
@@ -175,6 +146,30 @@ public class CircularList<T> {
 
             }
             return null;
+        }
+    }
+
+    private void addLast_aux(T item)
+    {
+        if (this.first == null)
+        {
+            this.last = new Node();
+            this.last.setItem(item);
+            this.last.setNext(this.last);
+            this.last.setPrevious(this.last);
+            this.first = this.last;
+            ++this.size;
+        }
+        else
+        {
+            Node<T> newLast = new Node();
+            newLast.setItem(item);
+            newLast.setPrevious(this.last);
+            newLast.setNext(this.first);
+            this.last.setNext(newLast);
+            this.first.setPrevious(newLast);
+            this.last = newLast;
+            ++this.size;
         }
     }
 

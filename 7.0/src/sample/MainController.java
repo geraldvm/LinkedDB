@@ -4,35 +4,21 @@ import Background.Commit.SaveFiles;
 import Background.Documents.Attribute;
 import Background.JsonObject.ObjectJ;
 import Background.JsonObject.Objeto;
-import Background.JsonStore.Store;
-import Background.LinkedList.DoubleList.DoubleList;
 import Background.LinkedList.SimpleList.SimpleList;
 import Background.Load.LoadFile;
-import com.sun.org.apache.xpath.internal.SourceTree;
-import com.sun.webkit.ContextMenuItem;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.ComboBoxTreeTableCell;
-import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import Background.Start;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +48,6 @@ public class MainController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //TreeItem<String> root = new TreeItem<>("Root");
         Commit.setDisable(true);
         /*
         z.newStore("StoreA");
@@ -93,9 +78,7 @@ public class MainController implements Initializable{
         this.init.setStoreList(Read.getStoreList());
         createTree();
 
-
     }
-
 
     public void mouseClick(MouseEvent mouseEvent){
         if(mouseEvent.isPopupTrigger()) {
@@ -109,8 +92,6 @@ public class MainController implements Initializable{
                 showT.setDisable(true);
             }
         }
-
-
 
 
     }
@@ -137,6 +118,7 @@ public class MainController implements Initializable{
         System.out.println("deleteF");
 
     }
+
     @FXML
     void deleteAllFunction(ActionEvent event) {
         if(!init.getStoreList().isEmpty()) {
@@ -172,8 +154,6 @@ public class MainController implements Initializable{
     }
 
 
-
-
     @FXML
     void searchFunction(ActionEvent event) {
         System.out.println("searchFunction");
@@ -190,7 +170,6 @@ public class MainController implements Initializable{
         this.createTable(item.getParent().getValue(),item.getValue());
     }
 
-
     @FXML
     public void updateFunction(ActionEvent event) {
         System.out.println("updateFunction");
@@ -198,7 +177,10 @@ public class MainController implements Initializable{
     }
 
 
-
+    /**
+     * Crea el àrbol
+     * Store, Documentos y Objetos
+     */
     private void createTree(){
         TreeItem<String> root = new TreeItem<>("Root");
         if (!this.init.getStoreList().isEmpty()) {
@@ -236,6 +218,12 @@ public class MainController implements Initializable{
             }
         }
     }
+
+    /**
+     * Agrega los rows en su respectiva columna
+     * @param columnAttrib lista de atributos
+     * @param objectList lista de objetos
+     */
     private void Insert(SimpleList<Attribute> columnAttrib, SimpleList<ObjectJ> objectList) {
 
         List<String> columns = new ArrayList<String>();
@@ -245,7 +233,6 @@ public class MainController implements Initializable{
             columns.add(columnAttrib.find(i).getItem().getName());
         }
         TableColumn [] tableColumns = new TableColumn[columns.size()];
-        //int columnIndex = 0;
         for(int  k=0 ; k<columns.size(); k++) {
             int j = k;
             TableColumn col = new TableColumn(columns.get(k));
@@ -260,6 +247,12 @@ public class MainController implements Initializable{
             addRows(objectList.find(n).getItem().getRow(), columns.size());
         }
     }
+
+    /**
+     * Agrega los objetos a la tabla
+     * @param objectRow
+     * @param columnSize
+     */
     private void addRows(SimpleList<Objeto> objectRow, int columnSize){
         ObservableList<Object> row = FXCollections.observableArrayList();
         for(int x=0;x<columnSize;x++)
@@ -270,6 +263,9 @@ public class MainController implements Initializable{
         }tableView.getItems().add(row);
     }
 
+    /**
+     * Borrra la tabla
+     */
     private void eraseTB(){
         tableView.getItems().clear();
         tableView.getColumns().clear();

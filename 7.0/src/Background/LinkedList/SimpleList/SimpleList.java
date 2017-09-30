@@ -1,64 +1,116 @@
 package Background.LinkedList.SimpleList;
 
-import Background.Documents.Attribute;
-import sun.net.www.content.text.Generic;
-
+/**
+ * Clase SimpleList
+ * Es una lista enlazada simple de datos genéricos
+ * @author Gerald Valverde Mc kenzie
+ * @version 7.0
+ * @param <T> : dato de tipo Generics
+ */
 public class SimpleList<T> {
+    /**
+     * Atributos
+     * Node first: Referencia al primer nodo de la lista
+     * Node last: Referencia al último nodo de la lista
+     * int size: tamaño de la lista
+     */
     private Node<T> first;
     private Node<T> last;
     private int size=0;
 
-
+    /**
+     * Constructor
+     * Iniciliza los atributos
+     */
     public SimpleList(){
+        this.first=null;
+        this.last=null;
         this.size=0;
     }
 
+    /**
+     * Método length
+     * @return tamaño de la lista
+     */
     public int length() {
         return this.size;
     }
-
+    /**
+     * Metodo booleano
+     * @return si la lista esta vacia
+     */
     public boolean isEmpty(){
         return this.first==null;
     }
-
-
-
-    public void show()
-    {
-        Node<T> temp = first;
-        while (temp != null)
-        {
-            System.out.println(temp.getItem());
-            temp = temp.getNext();
-        }
+    /**
+     * Metodo encargado de agregar al final de la lista un dato
+     * @param item dato a insertar de tipo T
+     */
+    public void addLast(T item){
+        this.addLast_aux(item);
     }
-    /*public void addFirst(T item) {
-        Node newFirst = new Node();
-        newFirst.setItem(item);
-        if (this.first == null)
-        {
-            this.first = newFirst;
-        }
-        else
-        {
-            newFirst.setNext(this.first);
-            this.first = newFirst;
-        }
-    }*/
-
-    public void addLast(T item)
+    /**
+     * Metodo encargado de buscar un nodo por su valor
+     * @param value valor a buscar
+     */
+    public void search(T value)
     {
+        this.search(value, this.first);
+    }
+    /**
+     * Metodo encargar de borrar un dato al ingresar el valor
+     * @param item valor que se desea eliminar
+     */
+    public void delete(T item){
+        this.delete_aux(item);
+    }
+    /**
+     * Metodo encargado de actualizar datos
+     * @param oldValue valor viejo a cambiar
+     * @param newValue nuevo valor
+     */
+    public void update(T oldValue, T newValue){
+        this.update_aux(oldValue,newValue);
+    }
+    /**
+     * Metodo encargado de buscar un nodo segun su posicion
+     * @param pos : < this.length
+     * @return nodo en la pos
+     */
+    public Node<T> find(int pos)
+    {
+        return find_aux(pos);
+    }
+    /**
+     * Metodo encargado de agregar al inicio de la lista
+     * @param item valor a insertar
+     */
+    public void addFirst(T item){
+        this.addFirst_aux(item);
+    }
+    /**
+     * Busca un nodo por indice
+     * @param pos < this.length
+     * @return item del nodo
+     */
+    public T findItem(int pos)
+    {
+        return this.findI_aux(pos);
+    }
 
+
+
+   //Metodos privados
+    private void addLast_aux(T item)
+    {
         Node<T> newLast = new Node<>();
         newLast.setItem(item);
-
         if (this.isEmpty())
         {
             this.last = newLast;
             this.first = newLast;
             ++this.size;
         }
-
         else
         {
             this.last.setNext(newLast);
@@ -68,7 +120,7 @@ public class SimpleList<T> {
         }
     }
 
-    public void delete(T item)
+    private void delete_aux(T item)
     {
         Node<T> temp;
         temp=this.first;
@@ -104,7 +156,7 @@ public class SimpleList<T> {
 
     }
 
-    public void update(T item, T newValue)
+    private void update_aux(T item, T newValue)
     {
         Node<T> temp = first;
         if (last.getItem()==item)
@@ -122,26 +174,21 @@ public class SimpleList<T> {
 
     }
 
-    public void search(T value)
-    {
-        search(value, this.first);
-    }
-
     private void search(T value, Node<T> temp)
     {
 
         if(temp.getItem()==value)
         {
 
-            search(temp.getItem()==value);
+            this.search(temp.getItem()==value);
         }
         else if (temp.getNext()==null)
         {
-            search(temp.getItem()==value);
+            this.search(temp.getItem()==value);
         }
         else
         {
-            search(value, temp.getNext());
+            this.search(value, temp.getNext());
         }
     }
 
@@ -149,11 +196,6 @@ public class SimpleList<T> {
     {
         System.out.println(x);
         return x;
-    }
-
-    public Node<T> find(int pos)
-    {
-        return find_aux(pos);
     }
 
     private Node<T> find_aux(int pos)
@@ -175,10 +217,6 @@ public class SimpleList<T> {
             }
             return null;
         }
-    }
-    public T findItem(int pos)
-    {
-        return findI_aux(pos);
     }
 
     private T findI_aux(int pos)
@@ -202,7 +240,7 @@ public class SimpleList<T> {
         }
     }
 
-    public void addFirst(T item){
+    private void addFirst_aux(T item){
         Node<T> newFirst = new Node<>();
         newFirst.setItem(item);
         //newFirst.setNext(null);
@@ -219,7 +257,6 @@ public class SimpleList<T> {
         }
 
     }
-
 
 
 }

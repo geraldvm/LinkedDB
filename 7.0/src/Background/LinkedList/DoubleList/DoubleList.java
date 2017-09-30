@@ -1,12 +1,27 @@
 package Background.LinkedList.DoubleList;
 
-import Background.JsonStore.Store;
-
+/**
+ * Clase DoubleList
+ * Es una lista doblemente enlazada simple de datos genéricos
+ * @author Gerald Valverde Mc kenzie
+ * @version 7.0
+ * @param <T> : dato de tipo Generics
+ */
 public class DoubleList<T>{
+    /**
+     * Atributos
+     * Node first: Referencia al primer nodo de la lista
+     * Node last: Referencia al último nodo de la lista
+     * int size: tamaño de la lista
+     */
     private Node<T> first;
     private Node<T> last;
     private int size;
 
+    /**
+     * Constructor
+     * Iniciliza los atributos
+     */
     public DoubleList()
     {
         this.first=null;
@@ -14,124 +29,68 @@ public class DoubleList<T>{
         this.size=0;
     }
 
-
+    /**
+     * Método length
+     * @return tamaño de la lista
+     */
     public int length() {
         return this.size;
     }
 
+    /**
+     * Metodo encargado de buscar un nodo segun su posicion
+     * @param pos : < this.length
+     * @return nodo en la pos
+     */
     public Node<T> find(int pos)
     {
         return find_aux(pos);
     }
 
-    private Node<T> find_aux(int pos)
-    {
-        Node<T> temp = this.first;
-        if(this.isEmpty())
-        {
-            return null;
-        }
-        else {
-            if (pos <= this.length())
-            {
-                for (int i=0; i<pos; i++)
-                {
-                    temp= temp.getNext();
-                }
-                return temp;
-
-            }
-            return null;
-        }
-    }
+    /**
+     * Metodo booleano
+     * @return si la lista esta vacia
+     */
     public boolean isEmpty(){
         return this.first==null;
     }
 
-    public void addFirst(T item)
-    {
-        if (this.first == null)
-        {
-            this.first = new Node<>();
-            this.first.setItem(item);
-            this.last = this.first;
-            this.size++;
-        }
-        else
-        {
-            Node<T> newFirst = new Node<>();
-            newFirst.setItem(item);
-            newFirst.setNext(this.first);
-            this.first.setPrevious(newFirst);
-            this.first = newFirst;
-            this.size++;
-        }
-
-
+    /**
+     * Metodo encargado de agregar al inicio de la lista
+     * @param item valor a insertar
+     */
+    public void addFirst(T item){
+        this.addFirst_aux(item);
     }
 
-    public void addLast(T item)
+    /**
+     * Busca un nodo por indice
+     * @param pos < this.length
+     * @return item del nodo
+     */
+    public T findItem(int pos)
     {
-        if (this.first == null)
-        {
-            this.last = new Node<T>();
-            this.last.setItem(item);
-            this.first = this.last;
-            this.size++;
-        }
-        else
-        {
-            Node<T> newLast = new Node<>();
-            newLast.setItem(item);
-            newLast.setPrevious(this.last);
-            this.last.setNext(newLast);
-            this.last = newLast;
-            this.size++;
-        }
-    }
-    public void eraseLast()
-    {
-        this.last = this.last.getPrevious();
-        if (this.first==null){
-            System.out.println("lista vacia");
-        }
-        else if (this.last != null)
-        {
-            this.last.setNext(null);
-            this.size--;
-        }
-        else
-        {
-            this.first = null;
-            this.size--;
-        }
-    }
-    public void show()
-    {
-        Node<T> temp = this.first;
-        while (temp != null)
-        {
-            System.out.println(temp.getItem());
-            temp = temp.getNext();
-        }
+        return this.findI_aux(pos);
     }
 
-
-    public Boolean search(T item)
-    {
-        Node<T> temp = this.first;
-        while (temp != null)
-        {
-            if (temp.getItem().equals(item))
-            {
-                return true;
-            }
-            temp =temp.getNext();
-        }
-        return false;
+    /**
+     * Metodo encargado de agregar al final de la lista un dato
+     * @param item dato a insertar de tipo T
+     */
+    public void addLast(T item){
+        this.addLast_aux(item);
     }
 
-    public void deletePos(int pos) {
+    /**
+     * Elimina un nodo por su posicion
+     * @param pos posicion a eliminar
+     */
+    public void deletePos(int pos){
+        this.deletePos_aux(pos);
+    }
+
+    //Metodos privados
+    private void deletePos_aux(int pos) {
         Node<T> temp = this.first;
         if(!this.isEmpty()) {
             if(this.size==1){
@@ -162,9 +121,47 @@ public class DoubleList<T>{
         }
     }
 
-    public T findItem(int pos)
+    private Node<T> find_aux(int pos)
     {
-        return findI_aux(pos);
+        Node<T> temp = this.first;
+        if(this.isEmpty())
+        {
+            return null;
+        }
+        else {
+            if (pos <= this.length())
+            {
+                for (int i=0; i<pos; i++)
+                {
+                    temp= temp.getNext();
+                }
+                return temp;
+
+            }
+            return null;
+        }
+    }
+
+    private void addFirst_aux(T item)
+    {
+        if (this.first == null)
+        {
+            this.first = new Node<>();
+            this.first.setItem(item);
+            this.last = this.first;
+            this.size++;
+        }
+        else
+        {
+            Node<T> newFirst = new Node<>();
+            newFirst.setItem(item);
+            newFirst.setNext(this.first);
+            this.first.setPrevious(newFirst);
+            this.first = newFirst;
+            this.size++;
+        }
+
+
     }
 
     private T findI_aux(int pos)
@@ -188,6 +185,24 @@ public class DoubleList<T>{
         }
     }
 
+    public void addLast_aux(T item)
+    {
+        if (this.first == null)
+        {
+            this.last = new Node<T>();
+            this.last.setItem(item);
+            this.first = this.last;
+            this.size++;
+        }
+        else
+        {
+            Node<T> newLast = new Node<>();
+            newLast.setItem(item);
+            newLast.setPrevious(this.last);
+            this.last.setNext(newLast);
+            this.last = newLast;
+            this.size++;
+        }
+    }
+
 }
-
-

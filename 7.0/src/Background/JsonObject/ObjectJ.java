@@ -3,21 +3,45 @@ package Background.JsonObject;
 import Background.Documents.Attribute;
 import Background.LinkedList.SimpleList.SimpleList;
 
+/**
+ * Clase ObjectJ
+ *Lista de Objetos
+ * @author Gerald Valverde Mc kenzie
+ * @version 7.0
+ */
 public class ObjectJ {
+    /**
+     * Lista de atributos
+     * Lista con los valores del Objeto "ROW"
+     */
     private SimpleList<Attribute> attributeList;
     private SimpleList<Objeto> row;
 
+    /**
+     * Constructor
+     * @param attributeList: lista de atributos
+     * @param row: fila de Objetos
+     */
     public ObjectJ(SimpleList<Attribute> attributeList, SimpleList<Objeto> row){
         this.attributeList=attributeList;
         this.row=row;
-
     }
+
+    /**
+     * Constructor de 1 parametro
+     * @param attributeList: Lista de atributos
+     */
     public ObjectJ(SimpleList<Attribute> attributeList){
         this.attributeList=attributeList;
         this.row=new SimpleList<>();
     }
 
-
+    /**
+     * Funcion Booleana
+     * @param attribute: Atributo
+     * @param value: Valor del Objeto
+     * @return Si los tipos coinciden
+     */
     private boolean isSameType(Attribute attribute,Object value){
         String x = value.getClass().getSimpleName();
         switch (x){
@@ -31,19 +55,18 @@ public class ObjectJ {
                 return attribute.getType()=="date";
         }return false;
     }
-
-
-    public void showRowValue(){
-        if (!this.row.isEmpty()) {
-            for (int i = 0; i < this.row.length(); ++i) {
-                System.out.println(this.row.find(i).getItem().getValue());
-            }
-        }else {
-            System.out.println("EMPTY");
-        }
+    /**
+     * Getter
+     * @return Retorna la fila de Objetos
+     */
+    public SimpleList<Objeto> getRow() {
+        return this.row;
     }
 
-
+    /**
+     * Crear Fila de Objetos
+     * @param value valor para cada columna
+     */
     public void createRow (Object...value){
 
         for (int i=0;i<this.attributeList.length();++i){
@@ -63,6 +86,12 @@ public class ObjectJ {
             }
         }
     }
+
+    /**
+     * Crear Fila de Objetos
+     * @param attribute: Nombre del atributo
+     * @param value : valor de la columna
+     */
     public void createRow (String attribute,Object value){
 
         for (int i=0;i<this.attributeList.length();++i){
@@ -80,7 +109,16 @@ public class ObjectJ {
 
         }
     }
-    public void createRowFromJson (String attribute,Object value){
+
+    /**
+     * Metodo para cargar Objetos guardados en memoria
+     * @param attribute : nombre del atributo
+     * @param value : valor del atributo
+     */
+    public void createRowFromJson(String attribute,Object value) {
+        this.createRowFromJson_aux(attribute,value);
+    }
+    private void createRowFromJson_aux (String attribute,Object value){
 
         for (int i=0;i<this.attributeList.length();++i){
             if (this.attributeList.findItem(i).getName().equals(attribute)){
@@ -91,7 +129,5 @@ public class ObjectJ {
         }
     }
 
-    public SimpleList<Objeto> getRow() {
-        return this.row;
-    }
+
 }
