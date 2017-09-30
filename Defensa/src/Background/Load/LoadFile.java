@@ -19,18 +19,12 @@ public class LoadFile {
      */
     private DoubleList<Store> storeList;
 
-
     /**
      * Constructor inicializa la lista
      */
     public LoadFile(){
         this.storeList = new DoubleList<>();
-        File newStore = new File(System.getProperty("user.dir")+"\\LINKED\\");
-        if(!newStore.exists()) {
-            newStore.mkdirs();
-        }
     }
-
 
     /**
      * Getter
@@ -91,7 +85,6 @@ public class LoadFile {
     private File[] exist_aux(String directory)
     {
         String path = System.getProperty("user.dir")+"\\"+directory;
-
         File store = new File(path);
         if (store.exists())
         {

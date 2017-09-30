@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Defensa:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/Defensa_jar2</output-path>
+    <root id="archive" name="Defensa.jar">
+      <element id="module-output" name="Defensa" />
+      <element id="library" level="project" name="json-simple-1.1.1" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../json-simple-1.1.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -113,12 +113,7 @@ public class SaveDoc {
         this.addAttribute();
         this.addObject();
         try {
-
             FileWriter file = new FileWriter(System.getProperty("user.dir")+"\\LINKED\\"+this.storeName+"\\"+this.documentName+".json");
-            File y = new File(System.getProperty("user.dir")+"\\LINKED\\"+this.storeName+"\\");
-            if(y.exists()){
-                y.delete();
-            }
             file.write(this.jsonFile.toJSONString());
             file.flush();
             file.close();
