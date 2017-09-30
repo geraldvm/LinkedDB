@@ -71,7 +71,7 @@ public class JsonLoad {
     }
 
     private JSONObject read_aux() {
-        String path = "C:\\Users\\geral\\Desktop\\LINKED\\" + this.storeName + "\\" + this.docName;
+        String path = System.getProperty("user.dir")+"\\LINKED\\" + this.storeName + "\\" + this.docName;
         JSONParser parser = new JSONParser();
         try {
 

@@ -84,7 +84,7 @@ public class LoadFile {
 
     private File[] exist_aux(String directory)
     {
-        String path = "C:\\Users\\geral\\Desktop\\"+directory;
+        String path = System.getProperty("user.dir")+"\\"+directory;
         File store = new File(path);
         if (store.exists())
         {

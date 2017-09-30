@@ -95,7 +95,7 @@ public class SaveDoc {
         if(!this.attribute.isEmpty()){
             for(int i=0;i<this.attribute.length();++i){
                 JSONObject attribJson = new JSONObject();
-                Attribute temp = this.attribute.find(i).getItem();
+                Attribute temp = this.attribute.findItem(i);
                 attribJson.put("name",temp.getName());
                 attribJson.put("type",temp.getType());
                 attribJson.put("key",temp.getKey());
@@ -113,7 +113,7 @@ public class SaveDoc {
         this.addAttribute();
         this.addObject();
         try {
-            FileWriter file = new FileWriter("C:\\Users\\geral\\Desktop\\LINKED\\"+this.storeName+"\\"+this.documentName+".json");
+            FileWriter file = new FileWriter(System.getProperty("user.dir")+"\\LINKED\\"+this.storeName+"\\"+this.documentName+".json");
             file.write(this.jsonFile.toJSONString());
             file.flush();
             file.close();

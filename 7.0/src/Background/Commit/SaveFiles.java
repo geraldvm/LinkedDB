@@ -25,7 +25,7 @@ public class SaveFiles {
      */
     public SaveFiles(DoubleList<Store> storeList){
         this.storeList=storeList;
-        this.path="C:\\Users\\geral\\Desktop\\LINKED\\";
+        this.path=System.getProperty("user.dir")+"\\LINKED\\";
     }
 
     /**

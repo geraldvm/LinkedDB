@@ -2,6 +2,7 @@ package sample;
 
 import Background.Commit.SaveFiles;
 import Background.Documents.Attribute;
+import Background.Documents.JsonDoc;
 import Background.JsonObject.ObjectJ;
 import Background.JsonObject.Objeto;
 import Background.LinkedList.SimpleList.SimpleList;
@@ -109,7 +110,7 @@ public class MainController implements Initializable{
         if (store!=null){
             init.newStore(store);
             Commit.setDisable(false);
-            createTree();
+            this.createTree();
         }
     }
 
@@ -134,17 +135,18 @@ public class MainController implements Initializable{
 
     @FXML
     void newDocFunction(ActionEvent event) {
-        //TreeItem<String> item = treeView.getSelectionModel().getSelectedItem().parentProperty().toString();
         if (treeView.getSelectionModel().getSelectedItem().getParent().getValue().toString()=="Root"){
-            System.out.println(treeView.getSelectionModel().getSelectedItem().getParent().getValue().toString());
-            Commit.setDisable(false);
+            JsonDoc doc =SecondWindow.newDOC();
+
+            if (doc!=null){
+                this.init.getStore(treeView.getSelectionModel().getSelectedItem().getValue()).newDoc(doc);
+                Commit.setDisable(false);
+                createTree();
+            }
 
 
 
         }
-
-
-        System.out.println("newDocFunction");
     }
 
     @FXML

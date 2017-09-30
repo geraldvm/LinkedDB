@@ -34,6 +34,15 @@ public class Attribute {
         this.value=null;
     }
 
+    public Attribute(String name, String type, String key,boolean required){
+        this.name=name;
+        this.type=type;
+        this.key=key;
+        this.required=required;
+        this.value=null;
+    }
+
+
     /**
      * Constructor
      * @param name : nombre del atributp

@@ -79,6 +79,14 @@ public class Store {
     }
 
     /**
+     * Agrega un nuevo Documento
+     * @param doc nombre del documento
+     */
+    public void newDoc(JsonDoc doc){
+        this.docs.addLast(doc);
+    }
+
+    /**
      * Agregar Atributos
      * @param jsonDoc JsonDoc
      * @param name nombre del atributo
