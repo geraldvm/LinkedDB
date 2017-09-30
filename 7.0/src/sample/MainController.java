@@ -68,6 +68,8 @@ public class MainController implements Initializable{
             } else {
                 showT.setDisable(true);
             }
+        }else {
+            showT.setDisable(false);
         }
 
 
