@@ -3,6 +3,8 @@ package sample;
 
 import Background.Documents.Attribute;
 import Background.Documents.JsonDoc;
+import Background.JsonObject.ObjectJ;
+import Background.JsonObject.Objeto;
 import Background.JsonStore.Store;
 import Background.LinkedList.SimpleList.SimpleList;
 import javafx.event.ActionEvent;
@@ -65,7 +67,7 @@ public class SecondWindow {
     }
 
     public static JsonDoc newDOC() {
-        ;
+
         Stage window = new Stage();
         input=null;
         //window.initStyle(StageStyle.UTILITY);
@@ -176,6 +178,41 @@ public class SecondWindow {
         window.setScene(scene);
         window.showAndWait();
         return attributeList;
+
+    }
+
+    public static void newObj() {
+        SimpleList<ObjectJ> objectList = new SimpleList<>();
+        Stage window = new Stage();
+        input = null;
+        window.setTitle("Object");
+        window.setMinWidth(350);
+        window.setMinHeight(300);
+
+        Label label = new Label();
+        label.setText("New Object");
+        label.setLayoutX(120);
+        label.setLayoutY(10);
+        AnchorPane layout = new AnchorPane();
+        layout.getChildren().addAll(label);
+        for (int i=1;i<5;i++){
+            TextField textinput = new TextField();
+            textinput.setPromptText("Value");
+            textinput.setMaxWidth(140);
+            textinput.setLayoutY(i*40);
+            textinput.setLayoutX(90);
+            layout.getChildren().addAll(textinput);
+        }
+        Button createBtn = new Button("Add");
+        createBtn.setTextFill(Paint.valueOf("#FFFFFF"));
+        createBtn.setStyle("-fx-background-color:#27a549");
+        createBtn.setLayoutX(150);
+        createBtn.setLayoutY(220);
+        createBtn.setOnAction(event -> window.close());
+        layout.getChildren().add(createBtn);
+        Scene scene = new Scene(layout);
+        window.setScene(scene);
+        window.showAndWait();
 
     }
 

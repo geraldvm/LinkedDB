@@ -50,30 +50,6 @@ public class MainController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Commit.setDisable(true);
-        /*
-        z.newStore("StoreA");
-        z.newStore("StoreB");
-        z.newStore("StoreC");
-        z.getStore(0).newDoc("DOC1");
-        z.getStore(0).newDoc("DOC2");
-        z.getStore(0).newDoc("DOC3");
-        z.getStore(0).getDocs().find(0).getItem().addAttribute("ID",1,true,false,0);
-        z.getStore(0).getDocs().find(0).getItem().addAttribute("Name",3,false,false);
-        z.getStore(0).getDocs().find(0).getItem().addAttribute("Edad",1,false,false);
-        z.getStore(0).getDocs().find(0).getItem().addObject(12258,"Carlos",25);
-        z.getStore(0).getDocs().find(0).getItem().addObject(4588,"Pedro",26);
-        z.getStore(0).getDocs().find(0).getItem().addObject("H","juan",35);
-        //System.out.println(z.getStore(0).getDocs().find(0).getItem().getObjectList().find(0).getItem().getRow().);
-        //SimpleList<Attribute> colAtrib = z.getStore(0).getDocs().find(0).getItem().getAttributeList();
-
-        /*z.showStore();
-        System.out.println("**********");
-        z.deleteStore("StoreA");
-        z.deleteStore("StoreB");
-        z.deleteStore("StoreC");
-        z.showStore();
-*/
-
         LoadFile Read = new LoadFile();
         Read.loadStores();
         this.init.setStoreList(Read.getStoreList());
@@ -82,7 +58,7 @@ public class MainController implements Initializable{
     }
 
     public void mouseClick(MouseEvent mouseEvent){
-        if(mouseEvent.isPopupTrigger()) {
+        if(mouseEvent.isPopupTrigger()&&treeView.isPressed()) {
             TreeItem<String> item = treeView.getSelectionModel().getSelectedItem();
             if(item.getParent().getValue().equals("Root")){
                 showT.setDisable(true);
@@ -151,7 +127,7 @@ public class MainController implements Initializable{
 
     @FXML
     void newObjectFunction(ActionEvent event) {
-
+        SecondWindow.newObj();
         System.out.println("newObjectFunction");
     }
 
@@ -259,7 +235,6 @@ public class MainController implements Initializable{
         ObservableList<Object> row = FXCollections.observableArrayList();
         for(int x=0;x<columnSize;x++)
         {
-
             Object Valid = objectRow.find(x).getItem().getValue();
             row.addAll(Valid);
         }tableView.getItems().add(row);
