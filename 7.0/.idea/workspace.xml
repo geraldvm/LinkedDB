@@ -86,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JsonLoad.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="JsonLoad.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Background/Load/JsonLoad.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1071">
-              <caret line="73" column="56" lean-forward="false" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
+            <state relative-caret-position="428">
+              <caret line="123" column="45" lean-forward="true" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -175,10 +175,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JsonDoc.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="JsonDoc.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Background/Documents/JsonDoc.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="526">
+            <state relative-caret-position="1972">
               <caret line="123" column="27" lean-forward="false" selection-start-line="123" selection-start-column="27" selection-end-line="123" selection-end-column="27" />
               <folding />
             </state>
@@ -198,8 +198,8 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="107" column="109" lean-forward="false" selection-start-line="107" selection-start-column="101" selection-end-line="107" selection-end-column="109" />
+            <state relative-caret-position="17">
+              <caret line="209" column="21" lean-forward="false" selection-start-line="209" selection-start-column="21" selection-end-line="209" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#deleteFunction#0;class#MainController#0" expanded="false" />
@@ -346,7 +346,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -441,8 +440,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -756,11 +756,13 @@
       <workItem from="1506783976602" duration="949000" />
       <workItem from="1506785751634" duration="1581000" />
       <workItem from="1506997115863" duration="119000" />
+      <workItem from="1508097167574" duration="188000" />
+      <workItem from="1509245622438" duration="1168000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175001000" />
+    <option name="totallyTimeSpent" value="176357000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -786,7 +788,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3192133" sideWeight="0.6703755" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980332" sideWeight="0.6703755" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11119516" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1095,14 +1097,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="33" column="44" lean-forward="false" selection-start-line="33" selection-start-column="44" selection-end-line="33" selection-end-column="44" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
@@ -1186,14 +1188,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Background/Load/JsonLoad.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1071">
-          <caret line="73" column="56" lean-forward="false" selection-start-line="73" selection-start-column="56" selection-end-line="73" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Background/Commit/SaveDoc.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1819">
@@ -1242,25 +1236,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="107" column="109" lean-forward="false" selection-start-line="107" selection-start-column="101" selection-end-line="107" selection-end-column="109" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#deleteFunction#0;class#MainController#0" expanded="false" />
-            <element signature="method#newDocFunction#0;class#MainController#0" expanded="false" />
-            <element signature="method#searchFunction#0;class#MainController#0" expanded="false" />
-            <element signature="method#showAllFunction#0;class#MainController#0" expanded="false" />
-            <element signature="method#updateFunction#0;class#MainController#0" expanded="false" />
-            <element signature="method#createTree#0;class#MainController#0" expanded="false" />
-            <element signature="docComment;method#Insert#0;class#MainController#0" expanded="false" />
-            <element signature="docComment;method#addRows#0;class#MainController#0" expanded="false" />
-            <element signature="docComment;method#eraseTB#0;class#MainController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Background/JsonStore/Store.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1292">
@@ -1276,8 +1251,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Background/Documents/JsonDoc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
+        <state relative-caret-position="1972">
           <caret line="123" column="27" lean-forward="false" selection-start-line="123" selection-start-column="27" selection-end-line="123" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="209" column="21" lean-forward="false" selection-start-line="209" selection-start-column="21" selection-end-line="209" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#deleteFunction#0;class#MainController#0" expanded="false" />
+            <element signature="method#newDocFunction#0;class#MainController#0" expanded="false" />
+            <element signature="method#searchFunction#0;class#MainController#0" expanded="false" />
+            <element signature="method#showAllFunction#0;class#MainController#0" expanded="false" />
+            <element signature="method#updateFunction#0;class#MainController#0" expanded="false" />
+            <element signature="method#createTree#0;class#MainController#0" expanded="false" />
+            <element signature="docComment;method#Insert#0;class#MainController#0" expanded="false" />
+            <element signature="docComment;method#addRows#0;class#MainController#0" expanded="false" />
+            <element signature="docComment;method#eraseTB#0;class#MainController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Background/Load/JsonLoad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="428">
+          <caret line="123" column="45" lean-forward="true" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="45" />
           <folding />
         </state>
       </provider>
